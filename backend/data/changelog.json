@@ -1,0 +1,236 @@
+[
+  {
+    "timestamp": "2026-06-30T17:09:33.944725",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Test",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:33.102651",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Test Patologia",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:32.769779",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Test Finale",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:32.454658",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Test Completo",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:32.153423",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Test Proposta",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:31.832213",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Procedura Test",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:31.503592",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "sss",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:31.203288",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Infarto Miocardico",
+    "username": "admin",
+    "details": {
+      "tipo": "modifica"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:30.895262",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "sssss",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:30.717957",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Test SPA",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:30.367757",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "scompenso polmonare",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:29.487401",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "BPCO",
+    "username": "admin",
+    "details": {
+      "tipo": "modifica"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:09:27.937849",
+    "action": "RICHIESTA_ELIMINATA",
+    "target": "Infarto Miocardico (proposta procedura)",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_procedura"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:07:59.191902",
+    "action": "RICHIESTA_APPROVED",
+    "target": "Infarto Miocardico (proposta procedura)",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_procedura"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:04:59.572090",
+    "action": "RICHIESTA_REJECTED",
+    "target": "scompenso polmonare",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:04:58.271538",
+    "action": "RICHIESTA_REJECTED",
+    "target": "BPCO",
+    "username": "admin",
+    "details": {
+      "tipo": "modifica"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:04:02.057513",
+    "action": "RICHIESTA_REJECTED",
+    "target": "Test Completo",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:04:00.503275",
+    "action": "RICHIESTA_REJECTED",
+    "target": "Test Proposta",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:59.682867",
+    "action": "RICHIESTA_REJECTED",
+    "target": "Procedura Test",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:31.285345",
+    "action": "RICHIESTA_APPROVED",
+    "target": "Test SPA",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:27.744761",
+    "action": "RICHIESTA_REJECTED",
+    "target": "sss",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:25.944998",
+    "action": "RICHIESTA_REJECTED",
+    "target": "Infarto Miocardico",
+    "username": "admin",
+    "details": {
+      "tipo": "modifica"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:24.619143",
+    "action": "RICHIESTA_REJECTED",
+    "target": "sssss",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:12.683256",
+    "action": "RICHIESTA_REJECTED",
+    "target": "Test Finale",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:11.690568",
+    "action": "RICHIESTA_REJECTED",
+    "target": "Test Patologia",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  },
+  {
+    "timestamp": "2026-06-30T17:03:10.673455",
+    "action": "RICHIESTA_REJECTED",
+    "target": "Test",
+    "username": "admin",
+    "details": {
+      "tipo": "nuova_patologia"
+    }
+  }
+]

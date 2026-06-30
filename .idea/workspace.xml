@@ -1,19 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="" />
+    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="1">
+      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/scripts/sync_aifa.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/scripts/sync_patologie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/admin_users.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/analisi_centralizzate.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/farmaci_centralizzati.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/angina_pectoris.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/infarto_miocardico.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/ipertensione.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/scompenso_cardiaco.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/endocrinologia/diabete_mellito.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/gastroenterologia/gastrite.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/asma.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/bpco.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/polmonite.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/sintomi_centralizzati.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/admin_users.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/eslint.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/favicon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/icons.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/railway.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/hero.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/react.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/AdminScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/TagInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/render.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/template.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/db/neo4j_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/neo4j_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/scripts/import_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie.csv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5,
-  "fromUser": false
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;delelimed&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/delelimed/ClinGraph.git&quot;,
+    &quot;accountId&quot;: &quot;5a6f85c6-13c2-466d-9af4-f60a87a4ca86&quot;
+  }
+}</component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0222507843062043" />
+      <entry key="MS500" value="1.4671636734415903" />
+      <entry key="S2" value="1.826744508125871" />
+      <entry key="S5" value="1.9357306283586833" />
+      <entry key="S10" value="2.057603808922639" />
+      <entry key="S30" value="2.4435939300848863" />
+      <entry key="S60" value="2.6691098943768803" />
+      <entry key="M2" value="2.825939905711059" />
+      <entry key="M5" value="3.3834303152232827" />
+      <entry key="M10" value="4.945689289105471" />
+      <entry key="M15" value="7.137924498083569" />
+      <entry key="M30" value="23.161657972871495" />
+      <entry key="H1" value="69.56418587896763" />
+      <entry key="H2" value="131.8207260611608" />
+      <entry key="H4" value="184.10004447520708" />
+      <entry key="D1" value="244.5671492949935" />
+      <entry key="W1" value="256.88452759801623" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="5.319477907354572E-302" />
+      <entry key="S10" value="2.3063993382228005E-151" />
+      <entry key="S30" value="6.132602771233565E-51" />
+      <entry key="S60" value="7.831093647365566E-26" />
+      <entry key="M2" value="2.798424545588929E-13" />
+      <entry key="M5" value="9.736798261999287E-6" />
+      <entry key="M10" value="0.004572905648333047" />
+      <entry key="M15" value="0.051054032823702855" />
+      <entry key="M30" value="0.7609108400795023" />
+      <entry key="H1" value="3.201363461369181" />
+      <entry key="H2" value="6.667794983401003" />
+      <entry key="H4" value="9.652880172706025" />
+      <entry key="D1" value="13.157214510989474" />
+      <entry key="W1" value="13.876335249118904" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.04135453864514281" />
+      <entry key="MS500" value="0.9202946425752574" />
+      <entry key="S2" value="1.6472002379903399" />
+      <entry key="S5" value="1.8588884456868744" />
+      <entry key="S10" value="2.0148358945418643" />
+      <entry key="S30" value="2.42405115264918" />
+      <entry key="S60" value="2.6577534289267004" />
+      <entry key="M2" value="2.819732139973986" />
+      <entry key="M5" value="3.3807918183465633" />
+      <entry key="M10" value="4.948852102649432" />
+      <entry key="M15" value="7.187767960245718" />
+      <entry key="M30" value="23.920017391664242" />
+      <entry key="H1" value="72.76102272368072" />
+      <entry key="H2" value="138.48399037766654" />
+      <entry key="H4" value="193.74969273379153" />
+      <entry key="D1" value="257.72363725092487" />
+      <entry key="W1" value="270.76075356334945" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3Fqg8JZPu2UTIp4MgRuZrlKKKvp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,16 +155,34 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.import_csv.executor": "Run",
+    "Python.sync_patologie.executor": "Run",
+    "Python.test_db.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "master",
     "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\eliad\PycharmProjects\ClinGraph\backend\app" />
+      <recent name="C:\Users\eliad\PycharmProjects\ClinGraph\backend" />
+      <recent name="C:\Users\eliad\PycharmProjects\ClinGraph" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -47,11 +198,31 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1782807853255</updated>
-      <workItem from="1782807854487" duration="3000" />
+      <workItem from="1782807854487" duration="798000" />
+      <workItem from="1782808694065" duration="7695000" />
+      <workItem from="1782821120268" duration="9128000" />
     </task>
+    <task id="LOCAL-00001" summary="1">
+      <option name="closed" value="true" />
+      <created>1782816463095</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1782816463096</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ClinGraph$test_db.coverage" NAME="test_db Coverage Results" MODIFIED="1782808520004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app" />
+    <SUITE FILE_PATH="coverage/ClinGraph$import_csv.coverage" NAME="import_csv Coverage Results" MODIFIED="1782822323784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app/scripts" />
+    <SUITE FILE_PATH="coverage/ClinGraph$sync_patologie.coverage" NAME="sync_patologie Coverage Results" MODIFIED="1782830056140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app/scripts" />
   </component>
 </project>
