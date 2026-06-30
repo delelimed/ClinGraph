@@ -3,9 +3,8 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import { styles, colors } from "../styles";
 
-const API_BASE_URL = import.meta.env.PROD
-  ? ""
-  : "http://127.0.0.1:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL
+  || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
 
 const SearchIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { styles, colors, badgeStyle } from "../styles";
 import ReactMarkdown from "react-markdown";
 
-const API_BASE_URL = import.meta.env.PROD
-  ? ""
-  : "http://127.0.0.1:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL
+  || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
 
 const ArrowLeftIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

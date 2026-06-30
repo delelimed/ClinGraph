@@ -2,9 +2,8 @@
 import { useState, useEffect } from "react";
 import { styles, colors } from "../styles";
 
-const API_BASE_URL = import.meta.env.PROD
-  ? ""
-  : "http://127.0.0.1:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL
+  || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
 
 const AMBITI = ['Cardiologia','Pneumologia','Gastroenterologia','Endocrinologia','Neurologia','Ortopedia','Dermatologia','Urologia','Ginecologia','Oncologia','Nefrologia','Reumatologia','Medicina Interna'];
 
