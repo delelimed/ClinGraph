@@ -1,21 +1,45 @@
-patologia,sintomo,diagnosi,esami_laboratorio,ambito,terapia
-Polmonite,febbre alta,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
-Polmonite,tosse produttiva,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
-Asma,dispnea,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
-Asma,sibili espiratori,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
-BPCO,tosse cronica,spirometria,emogas arterioso,Pneumologia,broncodilatatori
-BPCO,dispnea progressiva,spirometria,emogas arterioso,Pneumologia,ossigenoterapia
-Infarto miocardico,dolore toracico,ECG + troponine,troponine alte,Cardiologia,angioplastica
-Infarto miocardico,sudorazione fredda,ECG + troponine,troponine alte,Cardiologia,antiaggreganti
-Angina pectoris,dolore toracico da sforzo,ECG da sforzo,profilo lipidico,Cardiologia,nitrati beta-bloccanti
-Scompenso cardiaco,edemi periferici,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
-Scompenso cardiaco,dispnea da sforzo,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
-Ipertensione,cefalea,misurazione PA,creatinina elettroliti,Cardiologia,ACE-inibitori
-Ipertensione,vertigini,misurazione PA,creatinina elettroliti,Cardiologia,antipertensivi
-Gastrite,dolore epigastrico,EGDS,Helicobacter pylori test,Gastroenterologia,inibitori pompa protonica
-Gastrite,nausea,EGDS,Helicobacter pylori test,Gastroenterologia,IPP antibiotici se H. pylori
-Diabete mellito,poliuria,glicemia a digiuno,HbA1c,Endocrinologia,metformina insulina
-Diabete mellito,polidipsia,glicemia a digiuno,HbA1c,Endocrinologia,dieta + farmaci ipoglicemizzanti
-Appendicite,dolore FID,ecografia addome,leucocitosi,Chirurgia,appendicectomia
-Appendicite,nausea,ecografia addome,leucocitosi,Chirurgia,chirurgia urgente
-Emicrania,cefalea pulsante,clinica,RM encefalo se necessario,Neurologia,triptani analgesici
+patologia,relazione,entita_collegata,tipo_entita,diagnosi,esami_laboratorio,ambito,terapia
+Polmonite,HA_SINTOMO,febbre alta,sintomo,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Polmonite,HA_SINTOMO,tosse produttiva,sintomo,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Polmonite,FATTORE_RISCHIO,fumo,stile_vita,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Polmonite,FATTORE_RISCHIO,alcolismo,stile_vita,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Polmonite,TARGET_ETA,anziani,eta,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Polmonite,TARGET_ETA,bambini,eta,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Asma,HA_SINTOMO,dispnea,sintomo,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
+Asma,HA_SINTOMO,sibili espiratori,sintomo,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
+Asma,FATTORE_RISCHIO,fumo passivo,stile_vita,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
+Asma,TARGET_ETA,bambini,eta,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
+Asma,TARGET_ETA,giovani,eta,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
+BPCO,HA_SINTOMO,tosse cronica,sintomo,spirometria,emogas arterioso,Pneumologia,broncodilatatori
+BPCO,HA_SINTOMO,dispnea progressiva,sintomo,spirometria,emogas arterioso,Pneumologia,ossigenoterapia
+BPCO,FATTORE_RISCHIO,fumo,stile_vita,spirometria,emogas arterioso,Pneumologia,broncodilatatori
+BPCO,TARGET_ETA,anziani,eta,spirometria,emogas arterioso,Pneumologia,broncodilatatori
+Infarto miocardico,HA_SINTOMO,dolore toracico,sintomo,ECG + troponine,troponine alte,Cardiologia,angioplastica
+Infarto miocardico,HA_SINTOMO,sudorazione fredda,sintomo,ECG + troponine,troponine alte,Cardiologia,antiaggreganti
+Infarto miocardico,FATTORE_RISCHIO,fumo,stile_vita,ECG + troponine,troponine alte,Cardiologia,angioplastica
+Infarto miocardico,FATTORE_RISCHIO,sedentarieta,stile_vita,ECG + troponine,troponine alte,Cardiologia,angioplastica
+Infarto miocardico,TARGET_ETA,adulti,eta,ECG + troponine,troponine alte,Cardiologia,angioplastica
+Infarto miocardico,TARGET_ETA,anziani,eta,ECG + troponine,troponine alte,Cardiologia,angioplastica
+Angina pectoris,HA_SINTOMO,dolore toracico da sforzo,sintomo,ECG da sforzo,profilo lipidico,Cardiologia,nitrati beta-bloccanti
+Angina pectoris,FATTORE_RISCHIO,fumo,stile_vita,ECG da sforzo,profilo lipidico,Cardiologia,nitrati beta-bloccanti
+Angina pectoris,TARGET_ETA,anziani,eta,ECG da sforzo,profilo lipidico,Cardiologia,nitrati beta-bloccanti
+Scompenso cardiaco,HA_SINTOMO,edemi periferici,sintomo,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
+Scompenso cardiaco,HA_SINTOMO,dispnea da sforzo,sintomo,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
+Scompenso cardiaco,FATTORE_RISCHIO,abuso di sale,stile_vita,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
+Scompenso cardiaco,TARGET_ETA,anziani,eta,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
+Ipertensione,HA_SINTOMO,cefalea,sintomo,misurazione PA,creatinina elettroliti,Cardiologia,ACE-inibitori
+Ipertensione,HA_SINTOMO,vertigini,sintomo,misurazione PA,creatinina elettroliti,Cardiologia,antipertensivi
+Ipertensione,FATTORE_RISCHIO,sedentarieta,stile_vita,misurazione PA,creatinina elettroliti,Cardiologia,ACE-inibitori
+Ipertensione,FATTORE_RISCHIO,dieta ricca di sodio,stile_vita,misurazione PA,creatinina elettroliti,Cardiologia,ACE-inibitori
+Ipertensione,TARGET_ETA,adulti,eta,misurazione PA,creatinina elettroliti,Cardiologia,ACE-inibitori
+Ipertensione,TARGET_ETA,anziani,eta,misurazione PA,creatinina elettroliti,Cardiologia,ACE-inibitori
+Gastrite,HA_SINTOMO,dolore epigastrico,sintomo,EGDS,Helicobacter pylori test,Gastroenterologia,inibitori pompa protonica
+Gastrite,HA_SINTOMO,nausea,sintomo,EGDS,Helicobacter pylori test,Gastroenterologia,IPP antibiotici se H. pylori
+Gastrite,FATTORE_RISCHIO,abuso di FANS,stile_vita,EGDS,Helicobacter pylori test,Gastroenterologia,inibitori pompa protonica
+Gastrite,FATTORE_RISCHIO,stress elevato,stile_vita,EGDS,Helicobacter pylori test,Gastroenterologia,inibitori pompa protonica
+Diabete mellito,HA_SINTOMO,poliuria,sintomo,glicemia a digiuno,HbA1c,Endocrinologia,metformina
+Diabete mellito,HA_SINTOMO,polidipsia,sintomo,glicemia a digiuno,HbA1c,Endocrinologia,metformina
+Diabete mellito,FATTORE_RISCHIO,sedentarieta,stile_vita,glicemia a digiuno,HbA1c,Endocrinologia,metformina
+Diabete mellito,FATTORE_RISCHIO,dieta ipercalorica,stile_vita,glicemia a digiuno,HbA1c,Endocrinologia,metformina
+Diabete mellito,TARGET_ETA,adulti,eta,glicemia a digiuno,HbA1c,Endocrinologia,metformina
+Diabete mellito,TARGET_ETA,anziani,eta,glicemia a digiuno,HbA1c,Endocrinologia,metformina

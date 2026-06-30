@@ -1,19 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="" />
+    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ClinGraph.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/db/neo4j_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/db/test_graph.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/scripts/import_csv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/test_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/data/patologie.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5,
-  "fromUser": false
-}]]></component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0015974471441789" />
+      <entry key="MS500" value="1.6663790605448283" />
+      <entry key="S2" value="4.277196421663341" />
+      <entry key="S5" value="5.688079325978852" />
+      <entry key="S10" value="6.299318052275508" />
+      <entry key="S30" value="6.75566406898571" />
+      <entry key="S60" value="6.876671825433844" />
+      <entry key="M2" value="6.953444929739065" />
+      <entry key="M5" value="7.167069724909535" />
+      <entry key="M10" value="7.832939081580933" />
+      <entry key="M15" value="10.399193214065999" />
+      <entry key="M30" value="31.882053374724073" />
+      <entry key="H1" value="83.68578065587165" />
+      <entry key="H2" value="144.43779204016735" />
+      <entry key="H4" value="191.76285856487019" />
+      <entry key="D1" value="243.88141054338448" />
+      <entry key="W1" value="254.23057367046027" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="1.8651114274920435E-230" />
+      <entry key="S10" value="1.3656908242688181E-115" />
+      <entry key="S30" value="5.1497260975624964E-39" />
+      <entry key="S60" value="7.1761592078815E-20" />
+      <entry key="M2" value="2.6788501789419884E-10" />
+      <entry key="M5" value="1.5164570045344072E-4" />
+      <entry key="M10" value="0.018046758453139085" />
+      <entry key="M15" value="0.12749741016693875" />
+      <entry key="M30" value="1.20245664340868" />
+      <entry key="H1" value="4.024415484072326" />
+      <entry key="H2" value="7.475945930787367" />
+      <entry key="H4" value="10.221129056530946" />
+      <entry key="D1" value="13.28324801325024" />
+      <entry key="W1" value="13.89524660888146" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9607858727308294" />
+      <entry key="MS500" value="1.6495342595936087" />
+      <entry key="S2" value="4.258739458558954" />
+      <entry key="S5" value="5.676790300674346" />
+      <entry key="S10" value="6.292768243468942" />
+      <entry key="S30" value="6.7532488722326605" />
+      <entry key="S60" value="6.87543302262301" />
+      <entry key="M2" value="6.952815272210197" />
+      <entry key="M5" value="7.166955811967959" />
+      <entry key="M10" value="7.850718383285897" />
+      <entry key="M15" value="10.525917476315195" />
+      <entry key="M30" value="33.08119482527953" />
+      <entry key="H1" value="87.7047918314581" />
+      <entry key="H2" value="151.90878597241888" />
+      <entry key="H4" value="201.980625846905" />
+      <entry key="D1" value="257.16393464636616" />
+      <entry key="W1" value="268.12571220769007" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3Fqg8JZPu2UTIp4MgRuZrlKKKvp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,16 +114,32 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.test_db.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "master",
     "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\eliad\PycharmProjects\ClinGraph\backend\app" />
+      <recent name="C:\Users\eliad\PycharmProjects\ClinGraph\backend" />
+      <recent name="C:\Users\eliad\PycharmProjects\ClinGraph" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -47,11 +155,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1782807853255</updated>
-      <workItem from="1782807854487" duration="3000" />
+      <workItem from="1782807854487" duration="798000" />
+      <workItem from="1782808694065" duration="7318000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ClinGraph$test_db.coverage" NAME="test_db Coverage Results" MODIFIED="1782808520004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app" />
   </component>
 </project>
