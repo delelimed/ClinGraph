@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;backend/app/db/neo4j_client.py&#10;#&#9;backend/app/main.py&#10;#&#9;backend/app/routes.py&#10;#&#9;backend/app/scripts/import_csv.py&#10;#&#9;backend/data/patologie.csv&#10;#&#9;frontend/src/components/DetailScreen.jsx&#10;#&#9;frontend/src/components/DiagnosisScreen.jsx&#10;#&#9;frontend/src/components/ExplorerScreen.jsx&#10;#&#9;frontend/src/components/WelcomeScreen.jsx&#10;#&#9;frontend/src/styles.js&#10;#&#9;requirements.txt">
+    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="build: rigenerato package-lock per allineare emnapi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/railway.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AdminScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AdminScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/railway.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/render.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,61 +49,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0222507843062043" />
-      <entry key="MS500" value="1.4671636734415903" />
-      <entry key="S2" value="1.826744508125871" />
-      <entry key="S5" value="1.9357306283586833" />
-      <entry key="S10" value="2.057603808922639" />
-      <entry key="S30" value="2.4435939300848863" />
-      <entry key="S60" value="2.6691098943768803" />
-      <entry key="M2" value="2.825939905711059" />
-      <entry key="M5" value="3.3834303152232827" />
-      <entry key="M10" value="4.945689289105471" />
-      <entry key="M15" value="7.137924498083569" />
-      <entry key="M30" value="23.161657972871495" />
-      <entry key="H1" value="69.56418587896763" />
-      <entry key="H2" value="131.8207260611608" />
-      <entry key="H4" value="184.10004447520708" />
-      <entry key="D1" value="244.5671492949935" />
-      <entry key="W1" value="256.88452759801623" />
+      <entry key="MS100" value="7.095937626795667E-14" />
+      <entry key="MS500" value="0.0023453191943070472" />
+      <entry key="S2" value="0.2200647533907877" />
+      <entry key="S5" value="0.5457832407973722" />
+      <entry key="S10" value="0.7387714401608741" />
+      <entry key="S30" value="0.9040033349530575" />
+      <entry key="S60" value="0.950793146555818" />
+      <entry key="M2" value="0.9854027654802251" />
+      <entry key="M5" value="2.65404965198733" />
+      <entry key="M10" value="10.323379920558354" />
+      <entry key="M15" value="18.101326304388092" />
+      <entry key="M30" value="40.06733752517047" />
+      <entry key="H1" value="87.60765467596103" />
+      <entry key="H2" value="154.82433607817165" />
+      <entry key="H4" value="214.978342813273" />
+      <entry key="D1" value="288.06527376573166" />
+      <entry key="W1" value="303.36021550509395" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="5.319477907354572E-302" />
-      <entry key="S10" value="2.3063993382228005E-151" />
-      <entry key="S30" value="6.132602771233565E-51" />
-      <entry key="S60" value="7.831093647365566E-26" />
-      <entry key="M2" value="2.798424545588929E-13" />
-      <entry key="M5" value="9.736798261999287E-6" />
-      <entry key="M10" value="0.004572905648333047" />
-      <entry key="M15" value="0.051054032823702855" />
-      <entry key="M30" value="0.7609108400795023" />
-      <entry key="H1" value="3.201363461369181" />
-      <entry key="H2" value="6.667794983401003" />
-      <entry key="H4" value="9.652880172706025" />
-      <entry key="D1" value="13.157214510989474" />
-      <entry key="W1" value="13.876335249118904" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.000000290460546" />
+      <entry key="M10" value="1.0007898192775602" />
+      <entry key="M15" value="1.0158338689372393" />
+      <entry key="M30" value="1.4237524941903363" />
+      <entry key="H1" value="3.3890444596859797" />
+      <entry key="H2" value="6.760058073576705" />
+      <entry key="H4" value="9.971792633048059" />
+      <entry key="D1" value="13.997734873258493" />
+      <entry key="W1" value="14.852181462381795" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.04135453864514281" />
-      <entry key="MS500" value="0.9202946425752574" />
-      <entry key="S2" value="1.6472002379903399" />
-      <entry key="S5" value="1.8588884456868744" />
-      <entry key="S10" value="2.0148358945418643" />
-      <entry key="S30" value="2.42405115264918" />
-      <entry key="S60" value="2.6577534289267004" />
-      <entry key="M2" value="2.819732139973986" />
-      <entry key="M5" value="3.3807918183465633" />
-      <entry key="M10" value="4.948852102649432" />
-      <entry key="M15" value="7.187767960245718" />
-      <entry key="M30" value="23.920017391664242" />
-      <entry key="H1" value="72.76102272368072" />
-      <entry key="H2" value="138.48399037766654" />
-      <entry key="H4" value="193.74969273379153" />
-      <entry key="D1" value="257.72363725092487" />
-      <entry key="W1" value="270.76075356334945" />
+      <entry key="MS100" value="9.642186310661977E-10" />
+      <entry key="MS500" value="0.01794634430810458" />
+      <entry key="S2" value="0.5710512548583114" />
+      <entry key="S5" value="1.2028261064484036" />
+      <entry key="S10" value="1.5491577932804692" />
+      <entry key="S30" value="1.836267296112984" />
+      <entry key="S60" value="1.9163240563628388" />
+      <entry key="M2" value="1.9680131177977416" />
+      <entry key="M5" value="3.6468957679592684" />
+      <entry key="M10" value="11.320188444101698" />
+      <entry key="M15" value="19.114168498904718" />
+      <entry key="M30" value="41.48825058847336" />
+      <entry key="H1" value="90.99256975415706" />
+      <entry key="H2" value="161.58009157194638" />
+      <entry key="H4" value="224.94693358902623" />
+      <entry key="D1" value="302.06225735562373" />
+      <entry key="W1" value="318.2122830695575" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -151,6 +164,7 @@
       <workItem from="1782807854487" duration="798000" />
       <workItem from="1782808694065" duration="7695000" />
       <workItem from="1782821120268" duration="12163000" />
+      <workItem from="1782835726385" duration="2089000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -192,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782833894449</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="build: rigenerato package-lock per allineare emnapi">
+      <option name="closed" value="true" />
+      <created>1782835746166</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1782835746166</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +223,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;backend/app/db/neo4j_client.py&#10;#&#9;backend/app/main.py&#10;#&#9;backend/app/routes.py&#10;#&#9;backend/app/scripts/import_csv.py&#10;#&#9;backend/data/patologie.csv&#10;#&#9;frontend/src/components/DetailScreen.jsx&#10;#&#9;frontend/src/components/DiagnosisScreen.jsx&#10;#&#9;frontend/src/components/ExplorerScreen.jsx&#10;#&#9;frontend/src/components/WelcomeScreen.jsx&#10;#&#9;frontend/src/styles.js&#10;#&#9;requirements.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;backend/app/db/neo4j_client.py&#10;#&#9;backend/app/main.py&#10;#&#9;backend/app/routes.py&#10;#&#9;backend/app/scripts/import_csv.py&#10;#&#9;backend/data/patologie.csv&#10;#&#9;frontend/src/components/DetailScreen.jsx&#10;#&#9;frontend/src/components/DiagnosisScreen.jsx&#10;#&#9;frontend/src/components/ExplorerScreen.jsx&#10;#&#9;frontend/src/components/WelcomeScreen.jsx&#10;#&#9;frontend/src/styles.js&#10;#&#9;requirements.txt" />
+    <MESSAGE value="build: rigenerato package-lock per allineare emnapi" />
+    <option name="LAST_COMMIT_MESSAGE" value="build: rigenerato package-lock per allineare emnapi" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ClinGraph$test_db.coverage" NAME="test_db Coverage Results" MODIFIED="1782808520004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app" />

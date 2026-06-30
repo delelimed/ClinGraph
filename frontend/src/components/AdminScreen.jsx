@@ -1,6 +1,7 @@
 // src/components/AdminScreen.jsx
 import { useState, useEffect } from "react";
 import { styles, colors } from "../styles";
+import Footer from "./Footer";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL
   || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
@@ -150,7 +151,7 @@ export default function AdminScreen({ navigateBack }) {
   ];
 
   return (
-    <div style={{height:'100vh',display:'flex',flexDirection:'column',background:colors.bgDeep,overflow:'hidden'}}>
+    <div style={{minHeight:'100vh',minHeight:'100dvh',display:'flex',flexDirection:'column',background:colors.bgDeep}}>
       {/* Header */}
       <div style={{padding:'8px 20px',borderBottom:`1px solid ${colors.border}`,display:'flex',alignItems:'center',gap:12,flexShrink:0,background:'rgba(10,22,40,0.6)'}}>
         <button style={{background:'none',border:'none',color:colors.textMuted,cursor:'pointer',display:'flex',alignItems:'center',gap:4,fontSize:12,padding:'4px 8px',borderRadius:6}} onClick={navigateBack}><ArrowLeftIcon /> Home</button>
@@ -362,6 +363,7 @@ export default function AdminScreen({ navigateBack }) {
           </div>
         </div>}
       </div>
+      <Footer />
       <style>{`@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}`}</style>
     </div>
   );

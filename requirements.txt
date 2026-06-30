@@ -5,3 +5,7 @@ python-dotenv
 pydantic
 pyyaml
 python-multipart
+streamlit
+requests
+networkx
+plotly

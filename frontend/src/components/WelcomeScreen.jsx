@@ -1,6 +1,7 @@
 // src/components/WelcomeScreen.jsx
 import { useState, useEffect } from "react";
 import { styles, colors } from "../styles";
+import Footer from "./Footer";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL
   || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
@@ -435,6 +436,8 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
       <style>{`
         @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
       `}</style>
+
+      <Footer />
     </div>
   );
 }

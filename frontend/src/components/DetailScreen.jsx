@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { styles, colors, badgeStyle } from "../styles";
 import ReactMarkdown from "react-markdown";
+import Footer from "./Footer";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL
   || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
@@ -991,6 +992,7 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }

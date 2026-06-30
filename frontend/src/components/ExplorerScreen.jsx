@@ -2,6 +2,7 @@
 import { useState, useMemo, useRef } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import { styles, colors } from "../styles";
+import Footer from "./Footer";
 
 const SearchIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -296,6 +297,8 @@ export default function ExplorerScreen({ navigateBack, graph, handleNodeClick })
       <style>{`
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
       `}</style>
+
+      <Footer />
     </div>
   );
 }

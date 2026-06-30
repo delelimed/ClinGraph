@@ -30,11 +30,14 @@ export const styles = {
   // Page layouts
   page: {
     display: 'flex',
-    height: '100vh',
+    minHeight: '100vh',
+    minHeight: '100dvh',
     background: colors.bgDeep,
     color: colors.textPrimary,
     fontFamily: "var(--font-sans, 'Inter', sans-serif)",
-    overflow: 'hidden',
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch',
     flexWrap: 'wrap',
   },
 

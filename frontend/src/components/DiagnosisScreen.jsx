@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import { styles, colors } from "../styles";
+import Footer from "./Footer";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL
   || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
@@ -525,6 +526,8 @@ export default function DiagnosisScreen({
       <style>{`
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
       `}</style>
+
+      <Footer />
     </div>
   );
 }
