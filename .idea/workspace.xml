@@ -5,57 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="1">
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/scripts/sync_aifa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/scripts/sync_patologie.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/admin_users.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/analisi_centralizzate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/farmaci_centralizzati.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/angina_pectoris.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/infarto_miocardico.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/ipertensione.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/scompenso_cardiaco.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/endocrinologia/diabete_mellito.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/gastroenterologia/gastrite.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/asma.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/bpco.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/polmonite.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data/sintomi_centralizzati.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/admin_users.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/eslint.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/favicon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/railway.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/react.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/vite.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/AdminScreen.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/TagInput.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/render.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/template.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/db/neo4j_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/neo4j_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/scripts/import_csv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/data/patologie.csv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,30 +102,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.import_csv.executor": "Run",
-    "Python.sync_patologie.executor": "Run",
-    "Python.test_db.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.import_csv.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sync_patologie.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_db.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\eliad\PycharmProjects\ClinGraph\backend\app" />
@@ -200,7 +150,7 @@
       <updated>1782807853255</updated>
       <workItem from="1782807854487" duration="798000" />
       <workItem from="1782808694065" duration="7695000" />
-      <workItem from="1782821120268" duration="9128000" />
+      <workItem from="1782821120268" duration="10666000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -210,7 +160,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782816463096</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1">
+      <option name="closed" value="true" />
+      <created>1782832206503</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1782832206503</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1">
+      <option name="closed" value="true" />
+      <created>1782832218591</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1782832218591</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
