@@ -1,0 +1,21 @@
+patologia,sintomo,diagnosi,esami_laboratorio,ambito,terapia
+Polmonite,febbre alta,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Polmonite,tosse produttiva,clinica + RX torace,emocromo PCR,Pneumologia,antibiotico terapia
+Asma,dispnea,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
+Asma,sibili espiratori,spirometria,FeNO,Pneumologia,broncodilatatori corticosteroidi
+BPCO,tosse cronica,spirometria,emogas arterioso,Pneumologia,broncodilatatori
+BPCO,dispnea progressiva,spirometria,emogas arterioso,Pneumologia,ossigenoterapia
+Infarto miocardico,dolore toracico,ECG + troponine,troponine alte,Cardiologia,angioplastica
+Infarto miocardico,sudorazione fredda,ECG + troponine,troponine alte,Cardiologia,antiaggreganti
+Angina pectoris,dolore toracico da sforzo,ECG da sforzo,profilo lipidico,Cardiologia,nitrati beta-bloccanti
+Scompenso cardiaco,edemi periferici,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
+Scompenso cardiaco,dispnea da sforzo,ecocardiogramma,BNP elevato,Cardiologia,diuretici ACE-inibitori
+Ipertensione,cefalea,misurazione PA,creatinina elettroliti,Cardiologia,ACE-inibitori
+Ipertensione,vertigini,misurazione PA,creatinina elettroliti,Cardiologia,antipertensivi
+Gastrite,dolore epigastrico,EGDS,Helicobacter pylori test,Gastroenterologia,inibitori pompa protonica
+Gastrite,nausea,EGDS,Helicobacter pylori test,Gastroenterologia,IPP antibiotici se H. pylori
+Diabete mellito,poliuria,glicemia a digiuno,HbA1c,Endocrinologia,metformina insulina
+Diabete mellito,polidipsia,glicemia a digiuno,HbA1c,Endocrinologia,dieta + farmaci ipoglicemizzanti
+Appendicite,dolore FID,ecografia addome,leucocitosi,Chirurgia,appendicectomia
+Appendicite,nausea,ecografia addome,leucocitosi,Chirurgia,chirurgia urgente
+Emicrania,cefalea pulsante,clinica,RM encefalo se necessario,Neurologia,triptani analgesici
