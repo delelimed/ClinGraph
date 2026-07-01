@@ -1,8 +1,8 @@
 ---
-nome: "Scintigrafia miocardica"
+nome: "Scintigrafia Miocardica"
 tipo: "strumentale"
-descrizione: "Studio di perfusione miocardica con radionuclidi. Identifica aree di ischemia e necrosi miocardica."
-patologie: ["Angina pectoris", "Infarto miocardico"]
+descrizione: "Studio della perfusione miocardica."
+patologie: ["Cardiopatia ischemica", "Infarto miocardico", "Valvulopatie"]
 ---
 
-Studio di perfusione miocardica con radionuclidi. Identifica aree di ischemia e necrosi miocardica.
+La scintigrafia miocardica è un esame di medicina nucleare che valuta la perfusione sanguigna del miocardio. È fondamentale per la diagnosi di cardiopatia ischemica, valutazione dell'infarto miocardico e monitoraggio delle valvulopatie.

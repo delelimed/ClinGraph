@@ -127,7 +127,8 @@ def generate_csv():
 
 def import_neo4j():
     try:
-        from backend.app.db.neo4j_client import driver
+        from backend.app.db.neo4j_client import get_driver
+        driver = get_driver()
     except Exception as e:
         print(f"[INFO] Neo4j non disponibile: {e}")
         return False

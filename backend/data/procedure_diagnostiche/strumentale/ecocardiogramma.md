@@ -1,8 +1,8 @@
 ---
 nome: "Ecocardiogramma"
 tipo: "strumentale"
-descrizione: "Visualizzazione ecografica del cuore. Valutazione funzione sistolica/diastolica, valvulopatie, cardiopatie strutturali."
-patologie: ["Scompenso cardiaco", "Infarto miocardico", "Angina pectoris"]
+descrizione: "Ecografia del cuore per valutare struttura e funzione."
+patologie: ["Scompenso cardiaco", "Valvulopatie", "Cardiomiopatie", "Pericardite", "Infarto miocardico"]
 ---
 
-Visualizzazione ecografica del cuore. Valutazione funzione sistolica/diastolica, valvulopatie, cardiopatie strutturali.
+L'ecocardiogramma è un esame ecografico che visualizza la struttura e la funzione del cuore in tempo reale. Permette di valutare le dimensioni delle camere cardiache, la funzione contrattile e la presenza di anomalie valvolari o strutturali.

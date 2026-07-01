@@ -1,8 +1,8 @@
 ---
-nome: "Gastroscopia"
+nome: "Esofagogastroduodenoscopia (EGDS)"
 tipo: "strumentale"
-descrizione: "Esame endoscopico dell'esofago, stomaco e duodeno. Diagnosi di gastrite, ulcera, neoplasie, reflusso."
-patologie: ["Gastrite", "Ulcera peptica", "GERD"]
+descrizione: "Endoscopia dell'esofago, stomaco e duodeno."
+patologie: ["Gastrite", "Ulcera peptica", "Esofagite", "Neoplasie", "Helicobacter pylori"]
 ---
 
-Esame endoscopico dell'esofago, stomaco e duodeno. Diagnosi di gastrite, ulcera, neoplasie, reflusso.
+L'EGDS è un esame endoscopico che visualizza l'esofago, lo stomaco e il duodeno attraverso un endoscopio flessibile. È fondamentale per la diagnosi di gastrite, ulcere peptiche, esofagite e neoplasie del tratto digestivo superiore.

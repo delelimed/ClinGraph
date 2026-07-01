@@ -9,8 +9,19 @@ sintomi:
   - "sibili espiratori"
   - "senso di costrizione toracica"
   - "tosse notturna o al risveglio"
-  - "wheezing post-esercizio"
   - "sintomi notturni che svegliano il paziente"
+  - "affaticamento"
+  - "difficoltà a parlare in frasi complete"
+  - "ansia"
+  - "tachipnea"
+  - "cianosi"
+  - "accentuazione dei sintomi con freddo/esercizio"
+reperti_obiettivi:
+  - "wheezing espiratorio all'auscultazione"
+  - "prolungamento della fase espiratoria"
+  - "riduzione del FEV1 post-broncodilatazione (>=12%)"
+  - "FeNO elevato (>25 ppb)"
+  - "aumento del diametro antero-posteriore del torace (petto a barile)"
 fattori_rischio:
   - "atopia (dermatite atopica, rinite allergica, congiuntivite allergica)"
   - "fumo passivo (bambini)"
@@ -24,11 +35,10 @@ fattori_rischio:
   - " Sesso femminile (adulti)"
   - " Sesso maschile (bambini)"
   - "gastroesofageo reflux"
-eta_target:
-  - "bambini (prevalenza massima 5-14 anni)"
-  - "giovani adulti (15-30 anni)"
-prevalenza_gender: "M>F nei bambini; F>M dopo la puberita' e negli adulti"
-prevalenza_eta: "Prevalenza massima tra i 5 e i 14 anni; tende a ridursi con l'eta' ma puo` persistere nell'adulto"
+anamnesi_demografica:
+  eta: "bambini (prevalenza massima 5-14 anni), giovani adulti (15-30 anni)"
+  sesso: "M>F nei bambini; F>M dopo la puberita' e negli adulti"
+  incidenza: "prevalenza massima tra i 5 e i 14 anni; tende a ridursi con l'eta' ma puo` persistere nell'adulto"
 diagnosi_differenziale:
   - "BPCO"
   - "Bronchite cronica"

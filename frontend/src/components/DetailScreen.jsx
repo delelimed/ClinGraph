@@ -4,6 +4,18 @@ import { styles, colors, badgeStyle } from "../styles";
 import ReactMarkdown from "react-markdown";
 import Footer from "./Footer";
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
+  );
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 const API_BASE_URL = import.meta.env.VITE_API_URL
   || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
 
@@ -92,6 +104,7 @@ const EditIcon = () => (
 );
 
 export default function DetailScreen({ selectedPathology, navigateBack, onNavigateToPathology }) {
+  const isMobile = useIsMobile();
   const [analisiCollegate, setAnalisiCollegate] = useState([]);
   const [procedureCollegate, setProcedureCollegate] = useState([]);
   const [selectedAnalisi, setSelectedAnalisi] = useState(null);
@@ -207,25 +220,26 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
     }}>
 
       {/* Back button */}
-      <div style={{ padding: '16px 32px 0', flexShrink: 0 }}>
+      <div style={{ padding: isMobile ? '12px 16px 0' : '16px 32px 0', flexShrink: 0 }}>
         <button style={styles.backButton} onClick={navigateBack}>
           <ArrowLeftIcon /> Torna alla mappa del grafo
         </button>
       </div>
 
       {/* Content */}
-      <div style={{ padding: '0 32px 40px', flex: 1, overflow: 'auto' }}>
+      <div style={{ padding: isMobile ? '0 16px 32px' : '0 32px 40px', flex: 1, overflow: 'auto' }}>
 
         {/* Hero section */}
         <div style={{
           display: 'flex',
-          gap: 32,
+          gap: isMobile ? 16 : 32,
           marginTop: 12,
+          flexDirection: isMobile ? 'column' : 'row',
           animation: 'slideUp 0.4s ease both',
         }}>
 
           {/* Left column */}
-          <div style={{ width: '38%', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ width: isMobile ? '100%' : '38%', display: 'flex', flexDirection: 'column', gap: isMobile ? 12 : 16 }}>
 
             {/* Image */}
             <div style={{
@@ -238,7 +252,7 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
               <img
                 src={immagine}
                 alt={patologia}
-                style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }}
+                style={{ width: '100%', height: isMobile ? 180 : 220, objectFit: 'cover', display: 'block' }}
               />
               <div style={{
                 position: 'absolute',
@@ -312,7 +326,7 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
             {/* Title */}
             <div>
               <h1 style={{
-                fontSize: 34,
+                fontSize: isMobile ? 24 : 34,
                 fontWeight: 700,
                 margin: '0 0 8px 0',
                 letterSpacing: '-0.03em',
@@ -333,8 +347,8 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
             {/* Diagnostic grid */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 12,
+              gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+              gap: isMobile ? 8 : 12,
               animation: 'slideUp 0.4s ease 0.05s both',
             }}>
               <div style={localStyles.infoCard}>
@@ -793,9 +807,9 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
       {/* Proposal Modal */}
       {showProposalModal && (
         <div style={localStyles.modalBackdrop} onClick={() => setShowProposalModal(false)}>
-          <div style={localStyles.modalContainer} onClick={(e) => e.stopPropagation()}>
+          <div style={{ ...localStyles.modalContainer, padding: isMobile ? 20 : 28 }} onClick={(e) => e.stopPropagation()}>
             <div style={localStyles.modalHeader}>
-              <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: colors.textPrimary, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <h2 style={{ margin: 0, fontSize: isMobile ? 16 : 20, fontWeight: 700, color: colors.textPrimary, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <EditIcon /> Propone Modifica
               </h2>
               <button style={localStyles.modalCloseBtn} onClick={() => setShowProposalModal(false)}>
@@ -894,7 +908,7 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
                     <p style={{ margin: 0, color: colors.textMuted, fontSize: 12 }}>
                       Per follow-up della proposta, inserisci i tuoi dati:
                     </p>
-                    <div style={{ display: 'flex', gap: 12 }}>
+                    <div style={{ display: 'flex', gap: isMobile ? 8 : 12, flexDirection: isMobile ? 'column' : 'row' }}>
                       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
                         <label style={localStyles.fieldLabel}>Nome *</label>
                         <input
@@ -952,9 +966,9 @@ export default function DetailScreen({ selectedPathology, navigateBack, onNaviga
       {/* Analysis Detail Modal */}
       {selectedAnalisi && (
         <div style={localStyles.modalBackdrop} onClick={() => { setSelectedAnalisi(null); setAnalisiDetail(null); }}>
-          <div style={localStyles.modalContainer} onClick={(e) => e.stopPropagation()}>
+          <div style={{ ...localStyles.modalContainer, padding: isMobile ? 20 : 28 }} onClick={(e) => e.stopPropagation()}>
             <div style={localStyles.modalHeader}>
-              <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: colors.textPrimary, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <h2 style={{ margin: 0, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: colors.textPrimary, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <FlaskIcon /> Dettaglio Analisi
               </h2>
               <button style={localStyles.modalCloseBtn} onClick={() => { setSelectedAnalisi(null); setAnalisiDetail(null); }}>

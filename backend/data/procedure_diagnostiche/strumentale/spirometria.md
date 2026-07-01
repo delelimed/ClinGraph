@@ -1,8 +1,8 @@
 ---
 nome: "Spirometria"
 tipo: "strumentale"
-descrizione: "Misurazione della funzionalità polmonare. VEMS, CVF, rapporto FEV1/FVC. Diagnosi e classificazione BPCO e asma."
-patologie: ["BPCO", "Asma"]
+descrizione: "Misurazione della funzionalità polmonare."
+patologie: ["BPCO", "Asma", "Fibrosi polmonare", "Restrizione polmonare"]
 ---
 
-Misurazione della funzionalità polmonare. VEMS, CVF, rapporto FEV1/FVC. Diagnosi e classificazione BPCO e asma.
+La spirometria è un esame funzionale che misura la capacità polmonare e il flusso d'aria durante l'inspirazione e l'espirazione. È fondamentale per la diagnosi e monitoraggio delle malattie polmonari ostruttive e restrictive.

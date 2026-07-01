@@ -3,6 +3,18 @@ import { useState, useEffect } from "react";
 import { styles, colors } from "../styles";
 import Footer from "./Footer";
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
+  );
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 const API_BASE_URL = import.meta.env.VITE_API_URL
   || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
 
@@ -20,6 +32,7 @@ const FileIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="non
 const FolderIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>;
 
 export default function AdminScreen({ navigateBack }) {
+  const isMobile = useIsMobile();
   const [token, setToken] = useState(localStorage.getItem('admin_token'));
   const [username, setUsername] = useState(localStorage.getItem('admin_user'));
   const [userRole, setUserRole] = useState(localStorage.getItem('admin_role'));
@@ -153,28 +166,37 @@ export default function AdminScreen({ navigateBack }) {
   return (
     <div style={{minHeight:'100vh',minHeight:'100dvh',display:'flex',flexDirection:'column',background:colors.bgDeep}}>
       {/* Header */}
-      <div style={{padding:'8px 20px',borderBottom:`1px solid ${colors.border}`,display:'flex',alignItems:'center',gap:12,flexShrink:0,background:'rgba(10,22,40,0.6)'}}>
-        <button style={{background:'none',border:'none',color:colors.textMuted,cursor:'pointer',display:'flex',alignItems:'center',gap:4,fontSize:12,padding:'4px 8px',borderRadius:6}} onClick={navigateBack}><ArrowLeftIcon /> Home</button>
-        <div style={{display:'flex',alignItems:'center',gap:6,fontSize:13,fontWeight:700,color:colors.textPrimary}}><ShieldIcon /> Admin</div>
+      <div style={{padding:isMobile?'6px 10px':'8px 20px',borderBottom:`1px solid ${colors.border}`,display:'flex',alignItems:'center',gap:isMobile?6:12,flexShrink:0,background:'rgba(10,22,40,0.6)',flexWrap:isMobile?'wrap':'nowrap'}}>
+        <button style={{background:'none',border:'none',color:colors.textMuted,cursor:'pointer',display:'flex',alignItems:'center',gap:4,fontSize:isMobile?11:12,padding:'4px 8px',borderRadius:6}} onClick={navigateBack}><ArrowLeftIcon /> Home</button>
+        <div style={{display:'flex',alignItems:'center',gap:6,fontSize:isMobile?12:13,fontWeight:700,color:colors.textPrimary}}><ShieldIcon /> Admin</div>
         <div style={{flex:1}} />
-        <button style={{...S.secBtn,padding:'4px 10px',fontSize:10}} onClick={doSync} disabled={loading}>{loading?<SyncIcon />:'Sync DB'}</button>
-        <button style={{display:'flex',alignItems:'center',gap:5,padding:'4px 10px',borderRadius:6,border:`1px solid ${colors.border}`,background:'transparent',color:colors.textSecondary,fontWeight:600,fontSize:10,cursor:'pointer'}} onClick={() => window.open(`${API_BASE_URL}/admin/export-zip`, '_blank')}>
+        {!isMobile && <button style={{...S.secBtn,padding:'4px 10px',fontSize:10}} onClick={doSync} disabled={loading}>{loading?<SyncIcon />:'Sync DB'}</button>}
+        {!isMobile && <button style={{display:'flex',alignItems:'center',gap:5,padding:'4px 10px',borderRadius:6,border:`1px solid ${colors.border}`,background:'transparent',color:colors.textSecondary,fontWeight:600,fontSize:10,cursor:'pointer'}} onClick={() => window.open(`${API_BASE_URL}/admin/export-zip`, '_blank')}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
           Esporta ZIP
-        </button>
-        <div style={{display:'flex',gap:2,background:'rgba(255,255,255,0.03)',borderRadius:8,padding:3}}>
+        </button>}
+      </div>
+      {/* Tabs row (scrollable on mobile) */}
+      <div style={{padding:isMobile?'0 10px':'0 20px',borderBottom:`1px solid ${colors.border}`,background:'rgba(10,22,40,0.4)',overflowX:'auto',WebkitOverflowScrolling:'touch',flexShrink:0}}>
+        <div style={{display:'flex',gap:isMobile?2:0,padding:isMobile?'4px 0':'6px 0',minWidth:'min-content'}}>
           {TABS.map(t=>(
-            <button key={t.key} style={{background:tab===t.key?colors.accentLight:'none',border:'none',color:tab===t.key?colors.accent:colors.textMuted,cursor:'pointer',padding:'4px 10px',borderRadius:6,fontSize:11,fontWeight:600,display:'flex',alignItems:'center',gap:4}} onClick={()=>{setTab(t.key);if(t.key==='log')fetchCh();if(t.key==='richieste')fetchSugg();if(t.key==='patologie')fetchPatologieList();if(t.key==='procedure')fetchProcedureList();}}>
+            <button key={t.key} style={{background:tab===t.key?colors.accentLight:'none',border:'none',color:tab===t.key?colors.accent:colors.textMuted,cursor:'pointer',padding:isMobile?'5px 8px':'6px 12px',borderRadius:6,fontSize:isMobile?10:11,fontWeight:600,display:'flex',alignItems:'center',gap:4,whiteSpace:'nowrap',flexShrink:0}} onClick={()=>{setTab(t.key);if(t.key==='log')fetchCh();if(t.key==='richieste')fetchSugg();if(t.key==='patologie')fetchPatologieList();if(t.key==='procedure')fetchProcedureList();}}>
               {t.label}{t.count>0&&<span style={{fontSize:9,background:tab===t.key?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.06)',padding:'1px 5px',borderRadius:8,fontWeight:700}}>{t.count}</span>}
             </button>
           ))}
         </div>
-        <span style={{fontSize:10,color:colors.textMuted}}>{username}</span>
+      </div>
+      {/* User info + actions row */}
+      <div style={{padding:isMobile?'4px 10px':'4px 20px',display:'flex',alignItems:'center',gap:8,flexShrink:0,background:'rgba(10,22,40,0.3)',borderBottom:`1px solid ${colors.border}`}}>
+        {isMobile && <button style={{...S.secBtn,padding:'3px 8px',fontSize:9}} onClick={doSync} disabled={loading}>{loading?<SyncIcon />:'Sync'}</button>}
+        {isMobile && <button style={{display:'flex',alignItems:'center',gap:4,padding:'3px 8px',borderRadius:6,border:`1px solid ${colors.border}`,background:'transparent',color:colors.textSecondary,fontWeight:600,fontSize:9,cursor:'pointer'}} onClick={() => window.open(`${API_BASE_URL}/admin/export-zip`, '_blank')}>ZIP</button>}
+        <div style={{flex:1}} />
+        <span style={{fontSize:isMobile?9:10,color:colors.textMuted}}>{username}</span>
         <span style={{fontSize:9,fontWeight:700,padding:'2px 6px',borderRadius:8,background:userRole==='admin'?'rgba(245,158,11,0.15)':'rgba(16,185,129,0.15)',color:userRole==='admin'?'#f59e0b':'#10b981'}}>{userRole}</span>
-        <button style={{background:'none',border:`1px solid ${colors.border}`,color:colors.textMuted,padding:'4px 10px',borderRadius:6,fontSize:10,fontWeight:600,cursor:'pointer'}} onClick={doLogout}>Esci</button>
+        <button style={{background:'none',border:`1px solid ${colors.border}`,color:colors.textMuted,padding:isMobile?'3px 8px':'4px 10px',borderRadius:6,fontSize:isMobile?9:10,fontWeight:600,cursor:'pointer'}} onClick={doLogout}>Esci</button>
       </div>
 
-      <div style={{flex:1,overflow:'auto',padding:'16px 20px'}}>
+      <div style={{flex:1,overflow:'auto',padding:isMobile?'12px 10px':'16px 20px'}}>
         {msg&&<div style={{padding:'8px 12px',borderRadius:8,fontSize:12,marginBottom:12,background:msg.includes('Errore')?'rgba(239,68,68,0.1)':'rgba(16,185,129,0.1)',color:msg.includes('Errore')?'#ef4444':'#10b981',border:`1px solid ${msg.includes('Errore')?'rgba(239,68,68,0.2)':'rgba(16,185,129,0.2)'}`}}>{msg}</div>}
 
         {/* ===== RICHIESTE ===== */}
@@ -216,18 +238,18 @@ export default function AdminScreen({ navigateBack }) {
           {/* Upload form */}
           <div style={S.formCard}>
             <div style={{fontSize:11,fontWeight:700,color:colors.textPrimary,marginBottom:10}}>Carica nuova patologia (.md)</div>
-            <div style={{display:'flex',gap:10,alignItems:'end',flexWrap:'wrap'}}>
-              <div style={{flex:'0 0 160px'}}>
+            <div style={{display:'flex',gap:isMobile?6:10,alignItems:'end',flexWrap:'wrap'}}>
+              <div style={{flex:isMobile?'1 1 100%':'0 0 160px'}}>
                 <label style={S.label}>Ambito</label>
                 <select style={S.input} value={uploadAmbito} onChange={e=>setUploadAmbito(e.target.value)}>
                   {AMBITI.map(a=><option key={a} value={a}>{a}</option>)}
                 </select>
               </div>
-              <div style={{flex:1,minWidth:200}}>
+              <div style={{flex:1,minWidth:isMobile?120:200}}>
                 <label style={S.label}>File .md</label>
                 <input type="file" accept=".md" style={{fontSize:11,color:colors.textPrimary}} onChange={e=>setUploadFile(e.target.files?.[0]||null)} />
               </div>
-              <button style={{...S.primaryBtn,opacity:(!uploadFile||uploading)?0.5:1,whiteSpace:'nowrap'}} onClick={()=>uploadMd('patologie')} disabled={!uploadFile||uploading}>
+              <button style={{...S.primaryBtn,opacity:(!uploadFile||uploading)?0.5:1,whiteSpace:'nowrap',width:isMobile?'100%':'auto',justifyContent:'center'}} onClick={()=>uploadMd('patologie')} disabled={!uploadFile||uploading}>
                 <UploadIcon /> {uploading?'Caricamento...':'Carica'}
               </button>
             </div>
@@ -262,18 +284,18 @@ export default function AdminScreen({ navigateBack }) {
           {/* Upload form */}
           <div style={S.formCard}>
             <div style={{fontSize:11,fontWeight:700,color:colors.textPrimary,marginBottom:10}}>Carica nuova procedura (.md)</div>
-            <div style={{display:'flex',gap:10,alignItems:'end',flexWrap:'wrap'}}>
-              <div style={{flex:'0 0 160px'}}>
+            <div style={{display:'flex',gap:isMobile?6:10,alignItems:'end',flexWrap:'wrap'}}>
+              <div style={{flex:isMobile?'1 1 100%':'0 0 160px'}}>
                 <label style={S.label}>Ambito</label>
                 <select style={S.input} value={uploadAmbito} onChange={e=>setUploadAmbito(e.target.value)}>
                   {AMBITI.map(a=><option key={a} value={a}>{a}</option>)}
                 </select>
               </div>
-              <div style={{flex:1,minWidth:200}}>
+              <div style={{flex:1,minWidth:isMobile?120:200}}>
                 <label style={S.label}>File .md</label>
                 <input type="file" accept=".md" style={{fontSize:11,color:colors.textPrimary}} onChange={e=>setUploadFile(e.target.files?.[0]||null)} />
               </div>
-              <button style={{...S.primaryBtn,opacity:(!uploadFile||uploading)?0.5:1,whiteSpace:'nowrap'}} onClick={()=>uploadMd('procedure')} disabled={!uploadFile||uploading}>
+              <button style={{...S.primaryBtn,opacity:(!uploadFile||uploading)?0.5:1,whiteSpace:'nowrap',width:isMobile?'100%':'auto',justifyContent:'center'}} onClick={()=>uploadMd('procedure')} disabled={!uploadFile||uploading}>
                 <UploadIcon /> {uploading?'Caricamento...':'Carica'}
               </button>
             </div>
@@ -324,7 +346,7 @@ export default function AdminScreen({ navigateBack }) {
           <div style={{display:'flex',gap:8,marginBottom:14}}><button style={S.primaryBtn} onClick={()=>{setShowCreateUser(true);setEditingUser(null);setUserForm({username:"",password:"",role:"contributor"});}}><PlusIcon /> Nuovo Utente</button></div>
           {(showCreateUser||editingUser)&&<div style={S.formCard}>
             <div style={{display:'flex',justifyContent:'space-between',marginBottom:12}}><h3 style={{fontSize:14,margin:0,color:colors.textPrimary}}>{editingUser?`Modifica: ${editingUser}`:'Nuovo Utente'}</h3><button style={S.closeBtn} onClick={()=>{setShowCreateUser(false);setEditingUser(null);}}>x</button></div>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:8,alignItems:'end'}}>
+            <div style={{display:'grid',gridTemplateColumns:isMobile?'1fr':'1fr 1fr 1fr',gap:8,alignItems:'end'}}>
               <div><label style={S.label}>Username*</label><input style={{...S.input,opacity:editingUser?0.5:1}} value={userForm.username} onChange={e=>setUserForm({...userForm,username:e.target.value})} disabled={!!editingUser} /></div>
               <div><label style={S.label}>{editingUser?'Nuova Password':'Password*'}</label><input style={S.input} type="password" value={userForm.password} onChange={e=>setUserForm({...userForm,password:e.target.value})} /></div>
               <div><label style={S.label}>Ruolo*</label><select style={S.input} value={userForm.role} onChange={e=>setUserForm({...userForm,role:e.target.value})}><option value="contributor">Contributor</option><option value="admin">Admin</option></select></div>

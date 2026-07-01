@@ -14,6 +14,7 @@ PATOLOGIE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__f
 # Modello dati per la richiesta di diagnosi
 class DiagnosiRequest(BaseModel):
     sintomi: List[str]
+    fattori_rischio: List[str] = []
 
 
 ### 1. ENDPOINT: Ottieni l'intero Grafo (per l'Explorer del Frontend)
@@ -82,20 +83,31 @@ def calcola_diagnosi(req: DiagnosiRequest):
 
     # Normalizziamo gli input in minuscolo per fare un confronto sicuro
     sintomi_clean = [s.lower().strip() for s in req.sintomi]
+    fattori_clean = [s.lower().strip() for s in req.fattori_rischio] if req.fattori_rischio else []
 
+    # Query: score = matches sintomi + 0.5 * matches fattori_rischio
     query = """
-    MATCH (p:Patologia)-[r]->(c)
-    WHERE toLower(c.nome) IN $sintomi
-    RETURN p.nome AS patologia, count(r) AS match_count
-    ORDER BY match_count DESC
+    MATCH (p:Patologia)
+    OPTIONAL MATCH (p)-[r1]->(s)
+    WHERE toLower(s.nome) IN $sintomi AND type(r1) = 'HA_SINTOMO'
+    OPTIONAL MATCH (p)-[r2]->(f)
+    WHERE toLower(f.nome) IN $fattori AND type(r2) = 'FATTORE_RISCHIO'
+    WITH p,
+         count(DISTINCT CASE WHEN type(r1) = 'HA_SINTOMO' THEN s END) AS sintomi_count,
+         count(DISTINCT CASE WHEN type(r2) = 'FATTORE_RISCHIO' THEN f END) AS fattori_count
+    WITH p, sintomi_count, fattori_count,
+         sintomi_count + (fattori_count * 0.5) AS total_score
+    WHERE total_score > 0
+    RETURN p.nome AS patologia, total_score AS match_count
+    ORDER BY total_score DESC
     """
     try:
-        results = run_query(query, {"sintomi": sintomi_clean})
+        results = run_query(query, {"sintomi": sintomi_clean, "fattori": fattori_clean})
         diagnosi_list = []
         for record in results:
             diagnosi_list.append({
                 "patologia": record["patologia"],
-                "score": record["match_count"]
+                "score": round(record["match_count"], 1)
             })
         return {"diagnosi": diagnosi_list}
     except Exception as e:

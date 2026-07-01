@@ -33,13 +33,13 @@ export default function App() {
 
   const cleanInput = (text) => text.toLowerCase().split(",").map(s => s.trim()).filter(Boolean);
 
-  const avviaDiagnosi = async () => {
+  const avviaDiagnosi = async (fattoriRischio = []) => {
     const list = cleanInput(sintomi);
     try {
       const res = await fetch(`${API_BASE_URL}/diagnosi`, {
        method: "POST",
        headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({ sintomi: list }),
+       body: JSON.stringify({ sintomi: list, fattori_rischio: fattoriRischio }),
       });
       const data = await res.json();
       const sorted = [...data.diagnosi].sort((a, b) => b.score - a.score);

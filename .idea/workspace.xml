@@ -4,21 +4,53 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="build: rigenerato package-lock per allineare emnapi">
+    <list default="true" id="997ac71c-ba91-4dad-a91c-f7efd87fdc44" name="Changes" comment="Aggiunta di nuovi esami e nuove patologie (prova)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/railway.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AdminScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AdminScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DetailScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/scripts/sync_patologie.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/scripts/sync_patologie.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie.csv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/cardiologia/angina_pectoris.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/angina_pectoris.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/cardiologia/infarto_miocardico.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/infarto_miocardico.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/cardiologia/ipertensione.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/ipertensione.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/cardiologia/scompenso_cardiaco.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/cardiologia/scompenso_cardiaco.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/endocrinologia/diabete_mellito.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/endocrinologia/diabete_mellito.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/gastroenterologia/gastrite.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/gastroenterologia/gastrite.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/pneumologia/asma.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/asma.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/pneumologia/bpco.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/bpco.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/patologie/pneumologia/polmonite.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/patologie/pneumologia/polmonite.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/clinico/esame_neurologico.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/clinico/esame_neurologico.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/clinico/esame_obiettivo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/clinico/valutazione_antropometrica.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/clinico/valutazione_della_funzionalità_polmonare_clinica.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/clinico/valutazione_emodinamica.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/bnp___nt-probnp.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/d-dimero.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/emocromo_completo.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/emocromo_completo.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/esame_urine.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/esame_urine.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/funzionalità_renale_creatinina,_bun,_egfr.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/glicemia.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/glicemia.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/hba1c.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/hba1c.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/profilo_lipidico.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/profilo_lipidico.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/proteina_c_reattiva_pcr.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/sodio_e_potassio.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/troponina.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/ves.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/laboratorio/ves.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/colonoscopia.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/colonoscopia.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/coronarografia.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/ecg.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/ecg.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/ecocardiogramma.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/ecocardiogramma.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/ecografia_addominale.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/ecografia_addominale.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/gastroscopia.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/gastroscopia.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/holter_ecg_24h.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/holter_ecg_24h.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/holter_pressorio_abpm.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/radiografia_torace_rx_torace.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/scintigrafia_miocardica.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/scintigrafia_miocardica.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/spirometria.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/spirometria.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/procedure_diagnostiche/strumentale/tac_torace.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DiagnosisScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ExplorerScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/WelcomeScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/railway.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/render.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,61 +81,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="7.095937626795667E-14" />
-      <entry key="MS500" value="0.0023453191943070472" />
-      <entry key="S2" value="0.2200647533907877" />
-      <entry key="S5" value="0.5457832407973722" />
-      <entry key="S10" value="0.7387714401608741" />
-      <entry key="S30" value="0.9040033349530575" />
-      <entry key="S60" value="0.950793146555818" />
-      <entry key="M2" value="0.9854027654802251" />
-      <entry key="M5" value="2.65404965198733" />
-      <entry key="M10" value="10.323379920558354" />
-      <entry key="M15" value="18.101326304388092" />
-      <entry key="M30" value="40.06733752517047" />
-      <entry key="H1" value="87.60765467596103" />
-      <entry key="H2" value="154.82433607817165" />
-      <entry key="H4" value="214.978342813273" />
-      <entry key="D1" value="288.06527376573166" />
-      <entry key="W1" value="303.36021550509395" />
+      <entry key="MS100" value="1.027970670225558" />
+      <entry key="MS500" value="1.6241326359473032" />
+      <entry key="S2" value="4.541753899779074" />
+      <entry key="S5" value="8.137477308248549" />
+      <entry key="S10" value="10.47346480565958" />
+      <entry key="S30" value="12.650027055424337" />
+      <entry key="S60" value="13.29972949373369" />
+      <entry key="M2" value="13.65308316032666" />
+      <entry key="M5" value="15.48869558879657" />
+      <entry key="M10" value="23.168500500774197" />
+      <entry key="M15" value="30.94923600638355" />
+      <entry key="M30" value="52.922311615539236" />
+      <entry key="H1" value="100.46049975194616" />
+      <entry key="H2" value="167.6979803071298" />
+      <entry key="H4" value="227.89154431958428" />
+      <entry key="D1" value="301.04602354085716" />
+      <entry key="W1" value="316.3573224466952" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0" />
-      <entry key="M2" value="1.0" />
-      <entry key="M5" value="1.000000290460546" />
-      <entry key="M10" value="1.0007898192775602" />
-      <entry key="M15" value="1.0158338689372393" />
-      <entry key="M30" value="1.4237524941903363" />
-      <entry key="H1" value="3.3890444596859797" />
-      <entry key="H2" value="6.760058073576705" />
-      <entry key="H4" value="9.971792633048059" />
-      <entry key="D1" value="13.997734873258493" />
-      <entry key="W1" value="14.852181462381795" />
+      <entry key="MS100" value="2.824905040885487E-25" />
+      <entry key="MS500" value="1.2308376452974336E-5" />
+      <entry key="S2" value="0.05923115380927394" />
+      <entry key="S5" value="0.32286433757558364" />
+      <entry key="S10" value="0.5682115253808071" />
+      <entry key="S30" value="0.8282663408875945" />
+      <entry key="S60" value="0.9100913915028506" />
+      <entry key="M2" value="0.9539871023776217" />
+      <entry key="M5" value="0.9813346359597572" />
+      <entry key="M10" value="0.9914056267076624" />
+      <entry key="M15" value="1.0094737317087599" />
+      <entry key="M30" value="1.4192884377063848" />
+      <entry key="H1" value="3.383727256231648" />
+      <entry key="H2" value="6.754752933092383" />
+      <entry key="H4" value="9.967879046557856" />
+      <entry key="D1" value="13.996819118380238" />
+      <entry key="W1" value="14.852042650749501" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="9.642186310661977E-10" />
-      <entry key="MS500" value="0.01794634430810458" />
-      <entry key="S2" value="0.5710512548583114" />
-      <entry key="S5" value="1.2028261064484036" />
-      <entry key="S10" value="1.5491577932804692" />
-      <entry key="S30" value="1.836267296112984" />
-      <entry key="S60" value="1.9163240563628388" />
-      <entry key="M2" value="1.9680131177977416" />
-      <entry key="M5" value="3.6468957679592684" />
-      <entry key="M10" value="11.320188444101698" />
-      <entry key="M15" value="19.114168498904718" />
-      <entry key="M30" value="41.48825058847336" />
-      <entry key="H1" value="90.99256975415706" />
-      <entry key="H2" value="161.58009157194638" />
-      <entry key="H4" value="224.94693358902623" />
-      <entry key="D1" value="302.06225735562373" />
-      <entry key="W1" value="318.2122830695575" />
+      <entry key="MS100" value="0.9593120725249271" />
+      <entry key="MS500" value="1.602625426097124" />
+      <entry key="S2" value="4.537985293587387" />
+      <entry key="S5" value="8.31841894396091" />
+      <entry key="S10" value="10.9092809476035" />
+      <entry key="S30" value="13.41088268324065" />
+      <entry key="S60" value="14.172318919355893" />
+      <entry key="M2" value="14.587287094774936" />
+      <entry key="M5" value="16.46170037732702" />
+      <entry key="M10" value="24.15530217410021" />
+      <entry key="M15" value="31.95529559806524" />
+      <entry key="M30" value="54.33854832337241" />
+      <entry key="H1" value="103.83999335332562" />
+      <entry key="H2" value="174.4483786230868" />
+      <entry key="H4" value="237.85619504904935" />
+      <entry key="D1" value="315.0420868043032" />
+      <entry key="W1" value="331.20925054045614" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -164,7 +196,10 @@
       <workItem from="1782807854487" duration="798000" />
       <workItem from="1782808694065" duration="7695000" />
       <workItem from="1782821120268" duration="12163000" />
-      <workItem from="1782835726385" duration="2089000" />
+      <workItem from="1782835726385" duration="2199000" />
+      <workItem from="1782894061985" duration="1813000" />
+      <workItem from="1782900643385" duration="829000" />
+      <workItem from="1782901884896" duration="928000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -214,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782835746166</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="build: rigenerato package-lock per allineare emnapi">
+      <option name="closed" value="true" />
+      <created>1782837973359</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1782837973359</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +272,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ClinGraph$test_db.coverage" NAME="test_db Coverage Results" MODIFIED="1782808520004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app" />
     <SUITE FILE_PATH="coverage/ClinGraph$import_csv.coverage" NAME="import_csv Coverage Results" MODIFIED="1782822323784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app/scripts" />
-    <SUITE FILE_PATH="coverage/ClinGraph$sync_patologie.coverage" NAME="sync_patologie Coverage Results" MODIFIED="1782830056140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app/scripts" />
+    <SUITE FILE_PATH="coverage/ClinGraph$sync_patologie.coverage" NAME="sync_patologie Coverage Results" MODIFIED="1782901915192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app/scripts" />
   </component>
 </project>
