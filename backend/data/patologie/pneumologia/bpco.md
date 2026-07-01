@@ -6,10 +6,25 @@ diagnosi: "spirometria post-broncodilatazione (FEV1/FVC <0.70), emogas arterioso
 esami_laboratorio: "emogas arterioso, emocromo, alfa-1 antitripsina (giovani), PCR, BNP"
 sintomi:
   - "tosse cronica produttiva"
-  - "dispnea progressiva e progressiva"
+  - "dispnea progressiva"
   - "produzione di muco (sputo)"
   - "wheezing e affaticamento"
-  - "infezioni respiratorie ricorrenti"
+  - "cianosi"
+  - "edema periferico"
+  - "perdita di peso"
+  - "depressione"
+  - "disturbi del sonno"
+  - "emottisi"
+  - "dolori muscolari"
+  - "frequente riacutizzazione"
+reperti_obiettivi:
+  - "FEV1/FVC <0.70 post-broncodilatazione"
+  - "rantoli a scatola di cerini"
+  - "diminuito breath sounds"
+  - "tachipnea"
+  - "ipossiemia (PaO2 <60 mmHg)"
+  - "ipercapnia (PaCO2 >45 mmHg)"
+  - "iperinflazione polmonare (RX torace)"
 fattori_rischio:
   - "fumo di sigaretta (fattore principale, >90% dei casi)"
   - "fumo passivo"
@@ -20,10 +35,10 @@ fattori_rischio:
   - "bassa nascita e basso peso neonatale"
   - "infezioni respiratorie ricorrenti in eta' pediatrica"
   - " Sesso maschile (prevalenza storica, si riduce con diminuzione fumo)"
-eta_target:
-  - "anziani (>65 anni)"
-prevalenza_gender: "M>F storicamente (legato al fumo); il divario si riduce nelle generazioni giovani"
-prevalenza_eta: "Prevalenza >10% dopo i 65 anni; >25% dopo gli 80 anni nei forti fumatori/ex-fumatori"
+anamnesi_demografica:
+  eta: "anziani (>65 anni)"
+  sesso: "M>F storicamente (legato al fumo); il divario si riduce nelle generazioni giovani"
+  incidenza: "prevalenza >10% dopo i 65 anni; >25% dopo gli 80 anni nei forti fumatori/ex-fumatori"
 diagnosi_differenziale:
   - "Asma bronchiale"
   - "Insufficienza cardiaca"

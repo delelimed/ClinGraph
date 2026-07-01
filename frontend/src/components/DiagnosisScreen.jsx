@@ -38,6 +38,24 @@ const SpinnerIcon = () => (
   </svg>
 );
 
+const ChevronIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m9 18 6-6-6-6" />
+  </svg>
+);
+
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
+  );
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 export default function DiagnosisScreen({
   setScreen,
   sintomi,
@@ -47,23 +65,24 @@ export default function DiagnosisScreen({
   graph,
   handleNodeClick,
 }) {
+  const isMobile = useIsMobile();
   const [eta, setEta] = useState("");
   const [sesso, setSesso] = useState("");
-  const [stileVita, setStileVita] = useState({
-    fumo: false,
-    alcol: false,
-    sedentarieta: false,
-    ipertensione: false,
-  });
+  const [stileVita, setStileVita] = useState(new Set());
   const [currentSintomo, setCurrentSintomo] = useState("");
+  const [currentRischio, setCurrentRischio] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showRischioDropdown, setShowRischioDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [rischioSelectedIndex, setRischioSelectedIndex] = useState(-1);
   const [dbSintomi, setDbSintomi] = useState([]);
+  const [showGraph, setShowGraph] = useState(false);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
+  const rischioInputRef = useRef(null);
+  const rischioDropdownRef = useRef(null);
 
-  // Fetch symptoms from database
   useEffect(() => {
     const fetchSintomi = async () => {
       try {
@@ -79,22 +98,36 @@ export default function DiagnosisScreen({
 
   const listaSintomi = sintomi ? sintomi.split(",").map(s => s.trim()).filter(Boolean) : [];
 
-  // Filter suggestions based on input
+  const fattoriRischio = graph && graph.nodes
+    ? graph.nodes.filter(n => n.type === 'stile_vita').sort((a, b) => a.id.localeCompare(b.id))
+    : [];
+
   const filteredSuggestions = useMemo(() => {
     if (!currentSintomo.trim() || currentSintomo.length < 2) return [];
     const term = currentSintomo.toLowerCase().trim();
     const alreadyAdded = listaSintomi.map(s => s.toLowerCase());
     return dbSintomi
       .filter(s => s && s.nome && s.nome.toLowerCase().includes(term) && !alreadyAdded.includes(s.nome.toLowerCase()))
-      .slice(0, 8);
-  }, [currentSintomo, dbSintomi, listaSintomi]);
+      .slice(0, isMobile ? 5 : 8);
+  }, [currentSintomo, dbSintomi, listaSintomi, isMobile]);
 
-  // Close dropdown on outside click
+  const filteredRischioSuggestions = useMemo(() => {
+    if (!currentRischio.trim() || currentRischio.length < 2) return [];
+    const term = currentRischio.toLowerCase().trim();
+    return fattoriRischio
+      .filter(n => n.id.toLowerCase().includes(term) && !stileVita.has(n.id))
+      .slice(0, isMobile ? 5 : 8);
+  }, [currentRischio, fattoriRischio, stileVita, isMobile]);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target) &&
           inputRef.current && !inputRef.current.contains(e.target)) {
         setShowDropdown(false);
+      }
+      if (rischioDropdownRef.current && !rischioDropdownRef.current.contains(e.target) &&
+          rischioInputRef.current && !rischioInputRef.current.contains(e.target)) {
+        setShowRischioDropdown(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -118,8 +151,7 @@ export default function DiagnosisScreen({
     if (!currentSintomo.trim()) return;
     const nuovoSintomo = currentSintomo.trim();
     if (!listaSintomi.includes(nuovoSintomo)) {
-      const nuovaStringaSintomi = sintomi ? `${sintomi}, ${nuovoSintomo}` : nuovoSintomo;
-      setSintomi(nuovaStringaSintomi);
+      setSintomi(sintomi ? `${sintomi}, ${nuovoSintomo}` : nuovoSintomo);
     }
     setCurrentSintomo("");
     setShowDropdown(false);
@@ -128,8 +160,7 @@ export default function DiagnosisScreen({
 
   const selectSuggestion = (nome) => {
     if (!listaSintomi.includes(nome)) {
-      const nuovaStringaSintomi = sintomi ? `${sintomi}, ${nome}` : nome;
-      setSintomi(nuovaStringaSintomi);
+      setSintomi(sintomi ? `${sintomi}, ${nome}` : nome);
     }
     setCurrentSintomo("");
     setShowDropdown(false);
@@ -137,18 +168,58 @@ export default function DiagnosisScreen({
     inputRef.current?.focus();
   };
 
-  const rimuoviSintomo = (sintomoDaRimuovere) => {
-    const nuovaLista = listaSintomi.filter(s => s !== sintomoDaRimuovere);
-    setSintomi(nuovaLista.join(", "));
+  const rimuoviSintomo = (s) => {
+    setSintomi(listaSintomi.filter(x => x !== s).join(", "));
   };
 
-  const handleCheckboxChange = (campo) => {
-    setStileVita(prev => ({ ...prev, [campo]: !prev[campo] }));
+  const handleCheckboxChange = (nodeId) => {
+    setStileVita(prev => {
+      const next = new Set(prev);
+      if (next.has(nodeId)) next.delete(nodeId);
+      else next.add(nodeId);
+      return next;
+    });
+  };
+
+  const selectRischioSuggestion = (nodeId) => {
+    setStileVita(prev => {
+      const next = new Set(prev);
+      next.add(nodeId);
+      return next;
+    });
+    setCurrentRischio("");
+    setShowRischioDropdown(false);
+    setRischioSelectedIndex(-1);
+    rischioInputRef.current?.focus();
+  };
+
+  const handleRischioInputChange = (e) => {
+    setCurrentRischio(e.target.value);
+    setShowRischioDropdown(e.target.value.length >= 2);
+    setRischioSelectedIndex(-1);
+  };
+
+  const handleRischioKeyDown = (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setRischioSelectedIndex(prev => Math.min(prev + 1, filteredRischioSuggestions.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setRischioSelectedIndex(prev => Math.max(prev - 1, -1));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (rischioSelectedIndex >= 0 && rischioSelectedIndex < filteredRischioSuggestions.length) {
+        selectRischioSuggestion(filteredRischioSuggestions[rischioSelectedIndex].id);
+      }
+    } else if (e.key === "Escape") {
+      setShowRischioDropdown(false);
+      setRischioSelectedIndex(-1);
+    }
   };
 
   const handleElabora = async () => {
     setIsLoading(true);
-    await avviaDiagnosi();
+    await avviaDiagnosi(Array.from(stileVita));
     setIsLoading(false);
   };
 
@@ -178,9 +249,243 @@ export default function DiagnosisScreen({
     }
   };
 
+  // ─── MOBILE LAYOUT ───────────────────────────────────────────
+  if (isMobile) {
+    return (
+      <div style={mob.page}>
+        {/* Header */}
+        <div style={mob.header}>
+          <button style={mob.backBtn} onClick={() => setScreen("welcome")}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <h2 style={mob.title}>Modulo Diagnostico</h2>
+          <div style={{ width: 26 }} />
+        </div>
+
+        <div style={mob.scrollArea}>
+          {/* Anamnesi */}
+          <div style={mob.box}>
+            <div style={mob.boxTitle}><UserIcon /> Anamnesi</div>
+            <div style={{ display: "flex", gap: 8 }}>
+              <select style={{ ...mob.select, flex: 1 }} value={eta} onChange={(e) => setEta(e.target.value)}>
+                <option value="">Eta'</option>
+                <option value="neonato">Neonato</option>
+                <option value="pediatrico">Pediatrico</option>
+                <option value="adulto">Adulto</option>
+                <option value="anziano">Anziano</option>
+              </select>
+              <select style={{ ...mob.select, flex: 1 }} value={sesso} onChange={(e) => setSesso(e.target.value)}>
+                <option value="">Sesso</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Fattori di Rischio */}
+          <div style={mob.box}>
+            <div style={{ ...mob.boxTitle, justifyContent: 'space-between' }}>
+              <span><AlertIcon /> Fattori di Rischio</span>
+              <span style={{ fontSize: 10, color: colors.textMuted, fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>
+                {stileVita.size} sel.
+              </span>
+            </div>
+            <div style={{ position: 'relative' }} ref={rischioDropdownRef}>
+              <div style={{ display: "flex", gap: 8 }}>
+                <input
+                  ref={rischioInputRef}
+                  type="text"
+                  placeholder="Cerca fattore di rischio..."
+                  style={{ ...mob.input, flex: 1, paddingLeft: 32 }}
+                  value={currentRischio}
+                  onChange={handleRischioInputChange}
+                  onKeyDown={handleRischioKeyDown}
+                  onFocus={() => { if (currentRischio.length >= 2) setShowRischioDropdown(true); }}
+                />
+                <div style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: colors.textMuted, pointerEvents: 'none' }}>
+                  <SearchIcon />
+                </div>
+              </div>
+              {showRischioDropdown && filteredRischioSuggestions.length > 0 && (
+                <div style={mob.dropdown}>
+                  {filteredRischioSuggestions.map((item, idx) => (
+                    <div
+                      key={item.id}
+                      style={{
+                        ...mob.dropdownItem,
+                        background: idx === rischioSelectedIndex ? colors.bgHover : 'transparent',
+                      }}
+                      onMouseEnter={() => setRischioSelectedIndex(idx)}
+                      onClick={() => selectRischioSuggestion(item.id)}
+                    >
+                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: colors.nodeStileVita, flexShrink: 0 }} />
+                      <span style={{ color: colors.textPrimary, fontWeight: 500, fontSize: 13, flex: 1 }}>{item.id}</span>
+                      <span style={{ fontSize: 9, color: colors.nodeStileVita, textTransform: 'uppercase', fontWeight: 700 }}>rischio</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {showRischioDropdown && currentRischio.length >= 2 && filteredRischioSuggestions.length === 0 && (
+                <div style={mob.dropdown}>
+                  <div style={{ padding: 12, fontSize: 12, color: colors.textMuted, textAlign: 'center' }}>Nessun risultato.</div>
+                </div>
+              )}
+            </div>
+            {/* Selected risk factors as tags */}
+            <div style={mob.tagContainer}>
+              {stileVita.size > 0 ? Array.from(stileVita).map((nodeId) => (
+                <span key={nodeId} style={mob.tag}>
+                  {nodeId}
+                  <button style={mob.tagRemove} onClick={() => handleCheckboxChange(nodeId)}>x</button>
+                </span>
+              )) : (
+                <span style={{ fontSize: 12, color: colors.textMuted }}>Nessun fattore selezionato.</span>
+              )}
+            </div>
+          </div>
+
+          {/* Sintomi */}
+          <div style={mob.box}>
+            <div style={mob.boxTitle}><SearchIcon /> Sintomi</div>
+            <div style={{ position: 'relative' }} ref={dropdownRef}>
+              <div style={{ display: "flex", gap: 8 }}>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Cerca sintomo..."
+                  style={{ ...mob.input, flex: 1, paddingLeft: 32 }}
+                  value={currentSintomo}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  onFocus={() => { if (currentSintomo.length >= 2) setShowDropdown(true); }}
+                />
+                <button style={mob.addBtn} onClick={aggiungiSintomo}><PlusIcon /></button>
+                <div style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: colors.textMuted, pointerEvents: 'none' }}>
+                  <SearchIcon />
+                </div>
+              </div>
+
+              {showDropdown && filteredSuggestions.length > 0 && (
+                <div style={mob.dropdown}>
+                  {filteredSuggestions.map((item, idx) => (
+                    <div
+                      key={item.nome}
+                      style={{
+                        ...mob.dropdownItem,
+                        background: idx === selectedIndex ? colors.bgHover : 'transparent',
+                      }}
+                      onMouseEnter={() => setSelectedIndex(idx)}
+                      onClick={() => selectSuggestion(item.nome)}
+                    >
+                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: item.tipo === 'sintomo' ? colors.nodeSintomo : colors.nodeStileVita, flexShrink: 0 }} />
+                      <span style={{ color: colors.textPrimary, fontWeight: 500, fontSize: 13, flex: 1 }}>{item.nome}</span>
+                      <span style={{ fontSize: 9, color: item.tipo === 'sintomo' ? colors.nodeSintomo : colors.nodeStileVita, textTransform: 'uppercase', fontWeight: 700 }}>
+                        {item.tipo === 'sintomo' ? 'sintomo' : 'rischio'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {showDropdown && currentSintomo.length >= 2 && filteredSuggestions.length === 0 && (
+                <div style={mob.dropdown}>
+                  <div style={{ padding: 12, fontSize: 12, color: colors.textMuted, textAlign: 'center' }}>Nessun risultato.</div>
+                </div>
+              )}
+            </div>
+
+            {/* Tags */}
+            <div style={mob.tagContainer}>
+              {listaSintomi.length > 0 ? listaSintomi.map((s, i) => (
+                <span key={i} style={mob.tag}>
+                  {s}
+                  <button style={mob.tagRemove} onClick={() => rimuoviSintomo(s)}>x</button>
+                </span>
+              )) : (
+                <span style={{ fontSize: 12, color: colors.textMuted }}>Nessun sintomo.</span>
+              )}
+            </div>
+          </div>
+
+          {/* Elabora */}
+          <button
+            style={{
+              ...mob.elaboraBtn,
+              opacity: listaSintomi.length === 0 || isLoading ? 0.5 : 1,
+            }}
+            onClick={handleElabora}
+            disabled={listaSintomi.length === 0 || isLoading}
+          >
+            {isLoading ? <SpinnerIcon /> : null}
+            {isLoading ? 'Elaborazione...' : 'Elabora Diagnosi'}
+          </button>
+
+          {/* Risultati */}
+          {risultati.length > 0 && (
+            <div>
+              <div style={{ ...mob.boxTitle, marginBottom: 10 }}>
+                <span>Patologie Correlate</span>
+                <span style={{ background: colors.accentLight, color: colors.accent, padding: '2px 8px', borderRadius: 10, fontSize: 10, fontWeight: 700 }}>
+                  {risultati.length}
+                </span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {risultati.map((r, idx) => (
+                  <div key={idx} style={mob.resultCard}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+                      <div>
+                        <div style={{ fontWeight: 600, color: colors.textPrimary, fontSize: 14 }}>{r.patologia}</div>
+                        <div style={{ fontSize: 11, color: colors.textMuted, marginTop: 2 }}>
+                          {r.score} corrispondenz{r.score === 1 ? 'a' : 'e'}
+                        </div>
+                      </div>
+                      <button
+                        style={mob.detailBtn}
+                        onClick={() => handleNodeClick({ id: r.patologia, type: "patologia" })}
+                      >
+                        Dettagli <ChevronIcon />
+                      </button>
+                    </div>
+                    <div style={mob.progressTrack}>
+                      <div style={{ ...mob.progressFill, width: `${Math.min((r.score / maxScore) * 100, 100)}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Toggle Graph */}
+          <button style={mob.toggleGraphBtn} onClick={() => setShowGraph(!showGraph)}>
+            {showGraph ? 'Nascondi Grafo' : 'Mostra Grafo'}
+          </button>
+
+          {showGraph && (
+            <div style={mob.graphContainer}>
+              <ForceGraph2D
+                graphData={graph}
+                nodeColor={(n) => n.color}
+                nodeRelSize={4}
+                nodeVal={(n) => (n.type === "patologia" ? 2.5 : 0.8)}
+                linkWidth={0.5}
+                linkColor={() => "rgba(255,255,255,0.3)"}
+                onNodeClick={(n) => handleNodeClick(n)}
+                onNodeHover={(n) => { document.body.style.cursor = n ? 'pointer' : 'default'; }}
+              />
+            </div>
+          )}
+        </div>
+
+        <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
+        <Footer />
+      </div>
+    );
+  }
+
+  // ─── DESKTOP / TABLET LAYOUT ─────────────────────────────────
   return (
     <div style={styles.page}>
-
       {/* LEFT PANEL */}
       <div style={styles.left}>
         <button style={styles.backButton} onClick={() => setScreen("welcome")}>
@@ -197,28 +502,18 @@ export default function DiagnosisScreen({
           Inserisci i sintomi del paziente e i dati di anamnesi per calcolare le correlazioni patologiche.
         </p>
 
-        {/* Anamnesi Demografica */}
+        {/* Anamnesi */}
         <div style={{ ...localStyles.boxForm, animation: 'slideUp 0.4s ease 0.05s both' }}>
-          <div style={styles.sectionTitle}>
-            <UserIcon /> Anamnesi Demografica
-          </div>
+          <div style={styles.sectionTitle}><UserIcon /> Anamnesi Demografica</div>
           <div style={{ display: "flex", gap: 10 }}>
-            <select
-              style={{ ...localStyles.select, flex: 1 }}
-              value={eta}
-              onChange={(e) => setEta(e.target.value)}
-            >
+            <select style={{ ...localStyles.select, flex: 1 }} value={eta} onChange={(e) => setEta(e.target.value)}>
               <option value="">Fascia Eta'</option>
               <option value="neonato">Neonato (0-2 anni)</option>
               <option value="pediatrico">Pediatrico (3-14 anni)</option>
               <option value="adulto">Adulto (15-65 anni)</option>
               <option value="anziano">Anziano (65+ anni)</option>
             </select>
-            <select
-              style={{ ...localStyles.select, flex: 1 }}
-              value={sesso}
-              onChange={(e) => setSesso(e.target.value)}
-            >
+            <select style={{ ...localStyles.select, flex: 1 }} value={sesso} onChange={(e) => setSesso(e.target.value)}>
               <option value="">Sesso</option>
               <option value="M">Maschio</option>
               <option value="F">Femmina</option>
@@ -226,56 +521,81 @@ export default function DiagnosisScreen({
           </div>
         </div>
 
-        {/* Stile di Vita */}
+        {/* Fattori di Rischio */}
         <div style={{ ...localStyles.boxForm, animation: 'slideUp 0.4s ease 0.1s both' }}>
-          <div style={styles.sectionTitle}>
-            <AlertIcon /> Fattori di Rischio
+          <div style={{ ...styles.sectionTitle, justifyContent: 'space-between' }}>
+            <span><AlertIcon /> Fattori di Rischio</span>
+            <span style={{ fontSize: 10, color: colors.textMuted, fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>
+              {stileVita.size} selezionati
+            </span>
           </div>
-          <div style={localStyles.checkboxGrid}>
-            {[
-              { key: 'fumo', label: 'Fumatore' },
-              { key: 'alcol', label: 'Consumo Alcol' },
-              { key: 'sedentarieta', label: "Sedentarieta'" },
-              { key: 'ipertensione', label: 'Iperteso' },
-            ].map(({ key, label }) => (
-              <label
-                key={key}
+          <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
+            <div style={{ flex: 1, position: 'relative' }} ref={rischioDropdownRef}>
+              <input
+                ref={rischioInputRef}
+                type="text"
+                placeholder="Cerca fattore di rischio..."
                 style={{
-                  ...localStyles.checkboxLabel,
-                  background: stileVita[key] ? colors.accentLight : 'transparent',
-                  borderColor: stileVita[key] ? colors.borderActive : colors.border,
+                  ...localStyles.input, paddingLeft: 32,
+                  borderColor: showRischioDropdown && filteredRischioSuggestions.length > 0 ? colors.borderActive : undefined,
+                  boxShadow: showRischioDropdown && filteredRischioSuggestions.length > 0 ? `0 0 0 3px ${colors.accentLight}` : undefined,
                 }}
-                onClick={() => handleCheckboxChange(key)}
-              >
-                <div style={{
-                  width: 16,
-                  height: 16,
-                  borderRadius: 4,
-                  border: `1.5px solid ${stileVita[key] ? colors.accent : colors.textMuted}`,
-                  background: stileVita[key] ? colors.accent : 'transparent',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 150ms ease',
-                  flexShrink: 0,
-                }}>
-                  {stileVita[key] && (
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  )}
+                value={currentRischio}
+                onChange={handleRischioInputChange}
+                onKeyDown={handleRischioKeyDown}
+                onFocus={() => { if (currentRischio.length >= 2) setShowRischioDropdown(true); }}
+              />
+              <div style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: colors.textMuted, pointerEvents: 'none' }}>
+                <SearchIcon />
+              </div>
+              {showRischioDropdown && filteredRischioSuggestions.length > 0 && (
+                <div style={localStyles.dropdown}>
+                  {filteredRischioSuggestions.map((item, idx) => (
+                    <div
+                      key={item.id}
+                      style={{
+                        ...localStyles.dropdownItem,
+                        background: idx === rischioSelectedIndex ? colors.bgHover : 'transparent',
+                        borderLeft: idx === rischioSelectedIndex ? `2px solid ${colors.nodeStileVita}` : '2px solid transparent',
+                      }}
+                      onMouseEnter={() => setRischioSelectedIndex(idx)}
+                      onClick={() => selectRischioSuggestion(item.id)}
+                    >
+                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: colors.nodeStileVita, flexShrink: 0 }} />
+                      <span style={{ color: colors.textPrimary, fontWeight: 500, fontSize: 12.5, flex: 1 }}>{item.id}</span>
+                      <span style={{ fontSize: 9, color: colors.nodeStileVita, textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.06em' }}>rischio</span>
+                    </div>
+                  ))}
                 </div>
-                {label}
-              </label>
-            ))}
+              )}
+              {showRischioDropdown && currentRischio.length >= 2 && filteredRischioSuggestions.length === 0 && (
+                <div style={localStyles.dropdown}>
+                  <div style={{ padding: '12px 14px', fontSize: 12, color: colors.textMuted, textAlign: 'center' }}>Nessun fattore di rischio trovato.</div>
+                </div>
+              )}
+            </div>
+          </div>
+          {/* Selected risk factors as tags */}
+          <div style={localStyles.tagContainer}>
+            {stileVita.size > 0 ? Array.from(stileVita).map((nodeId) => (
+              <span key={nodeId} style={localStyles.symptomTag}>
+                {nodeId}
+                <button
+                  style={localStyles.removeTagButton}
+                  onClick={() => handleCheckboxChange(nodeId)}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = colors.danger; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = colors.accent; }}
+                >x</button>
+              </span>
+            )) : (
+              <span style={{ fontSize: 12, color: colors.textMuted, padding: '4px 0' }}>Nessun fattore di rischio selezionato.</span>
+            )}
           </div>
         </div>
 
-        {/* Input Sintomi with Autocomplete */}
+        {/* Sintomi */}
         <div style={{ ...localStyles.boxForm, animation: 'slideUp 0.4s ease 0.15s both' }}>
-          <div style={styles.sectionTitle}>
-            <SearchIcon /> Sintomatologia Obiettiva
-          </div>
+          <div style={styles.sectionTitle}><SearchIcon /> Sintomatologia Obiettiva</div>
           <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
             <div style={{ flex: 1, position: 'relative' }} ref={dropdownRef}>
               <input
@@ -283,30 +603,18 @@ export default function DiagnosisScreen({
                 type="text"
                 placeholder="Inizia a scrivere per cercare..."
                 style={{
-                  ...localStyles.input,
-                  paddingLeft: 32,
+                  ...localStyles.input, paddingLeft: 32,
                   borderColor: showDropdown && filteredSuggestions.length > 0 ? colors.borderActive : undefined,
                   boxShadow: showDropdown && filteredSuggestions.length > 0 ? `0 0 0 3px ${colors.accentLight}` : undefined,
                 }}
                 value={currentSintomo}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                onFocus={() => {
-                  if (currentSintomo.length >= 2) setShowDropdown(true);
-                }}
+                onFocus={() => { if (currentSintomo.length >= 2) setShowDropdown(true); }}
               />
-              <div style={{
-                position: 'absolute',
-                left: 10,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: colors.textMuted,
-                pointerEvents: 'none',
-              }}>
+              <div style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: colors.textMuted, pointerEvents: 'none' }}>
                 <SearchIcon />
               </div>
-
-              {/* Autocomplete Dropdown */}
               {showDropdown && filteredSuggestions.length > 0 && (
                 <div style={localStyles.dropdown}>
                   {filteredSuggestions.map((item, idx) => (
@@ -320,92 +628,54 @@ export default function DiagnosisScreen({
                       onMouseEnter={() => setSelectedIndex(idx)}
                       onClick={() => selectSuggestion(item.nome)}
                     >
-                      <span style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: '50%',
-                        background: item.tipo === 'sintomo' ? colors.nodeSintomo : colors.nodeStileVita,
-                        flexShrink: 0,
-                      }} />
-                      <span style={{ color: colors.textPrimary, fontWeight: 500, fontSize: 12.5, flex: 1 }}>
-                        {item.nome}
-                      </span>
-                      <span style={{
-                        fontSize: 9,
-                        color: item.tipo === 'sintomo' ? colors.nodeSintomo : colors.nodeStileVita,
-                        textTransform: 'uppercase',
-                        fontWeight: 700,
-                        letterSpacing: '0.06em',
-                      }}>
+                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: item.tipo === 'sintomo' ? colors.nodeSintomo : colors.nodeStileVita, flexShrink: 0 }} />
+                      <span style={{ color: colors.textPrimary, fontWeight: 500, fontSize: 12.5, flex: 1 }}>{item.nome}</span>
+                      <span style={{ fontSize: 9, color: item.tipo === 'sintomo' ? colors.nodeSintomo : colors.nodeStileVita, textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.06em' }}>
                         {item.tipo === 'sintomo' ? 'sintomo' : 'rischio'}
                       </span>
                     </div>
                   ))}
                 </div>
               )}
-
-              {/* No results message */}
               {showDropdown && currentSintomo.length >= 2 && filteredSuggestions.length === 0 && (
                 <div style={localStyles.dropdown}>
-                  <div style={{ padding: '12px 14px', fontSize: 12, color: colors.textMuted, textAlign: 'center' }}>
-                    Nessun sintomo trovato. Premi Invio per inserirlo manualmente.
-                  </div>
+                  <div style={{ padding: '12px 14px', fontSize: 12, color: colors.textMuted, textAlign: 'center' }}>Nessun sintomo trovato. Premi Invio per inserirlo manualmente.</div>
                 </div>
               )}
             </div>
             <button
               style={localStyles.addButton}
               onClick={aggiungiSintomo}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = colors.accent;
-                e.currentTarget.style.borderColor = colors.accent;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.borderColor = colors.border;
-              }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = colors.accent; e.currentTarget.style.borderColor = colors.accent; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = colors.border; }}
             >
               <PlusIcon />
             </button>
           </div>
-
-          {/* Tag Sintomi */}
           <div style={localStyles.tagContainer}>
-            {listaSintomi.length > 0 ? (
-              listaSintomi.map((s, idx) => (
-                <span key={idx} style={localStyles.symptomTag}>
-                  {s}
-                  <button
-                    style={localStyles.removeTagButton}
-                    onClick={() => rimuoviSintomo(s)}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = colors.danger; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = colors.accent; }}
-                  >
-                    x
-                  </button>
-                </span>
-              ))
-            ) : (
-              <span style={{ fontSize: 12, color: colors.textMuted, padding: '4px 0' }}>
-                Nessun sintomo aggiunto.
+            {listaSintomi.length > 0 ? listaSintomi.map((s, idx) => (
+              <span key={idx} style={localStyles.symptomTag}>
+                {s}
+                <button
+                  style={localStyles.removeTagButton}
+                  onClick={() => rimuoviSintomo(s)}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = colors.danger; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = colors.accent; }}
+                >x</button>
               </span>
+            )) : (
+              <span style={{ fontSize: 12, color: colors.textMuted, padding: '4px 0' }}>Nessun sintomo aggiunto.</span>
             )}
           </div>
         </div>
 
-        {/* Bottone Elabora */}
+        {/* Elabora */}
         <button
           style={{
-            ...styles.buttonPrimary,
-            width: "100%",
-            marginTop: 4,
-            marginBottom: 20,
+            ...styles.buttonPrimary, width: "100%", marginTop: 4, marginBottom: 20,
             opacity: listaSintomi.length === 0 || isLoading ? 0.5 : 1,
             cursor: listaSintomi.length === 0 || isLoading ? 'not-allowed' : 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 8,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           }}
           onClick={handleElabora}
           disabled={listaSintomi.length === 0 || isLoading}
@@ -417,22 +687,9 @@ export default function DiagnosisScreen({
         {/* Risultati */}
         {risultati.length > 0 && (
           <div style={{ animation: 'slideUp 0.3s ease both' }}>
-            <div style={{
-              ...styles.sectionTitle,
-              marginBottom: 12,
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+            <div style={{ ...styles.sectionTitle, marginBottom: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span>Patologie Correlate</span>
-              <span style={{
-                background: colors.accentLight,
-                color: colors.accent,
-                padding: '2px 8px',
-                borderRadius: 10,
-                fontSize: 10,
-                fontWeight: 700,
-              }}>
+              <span style={{ background: colors.accentLight, color: colors.accent, padding: '2px 8px', borderRadius: 10, fontSize: 10, fontWeight: 700 }}>
                 {risultati.length}
               </span>
             </div>
@@ -440,24 +697,13 @@ export default function DiagnosisScreen({
               {risultati.map((r, idx) => (
                 <div
                   key={idx}
-                  style={{
-                    ...localStyles.resultCard,
-                    animationDelay: `${idx * 50}ms`,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = colors.bgElevated;
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = colors.bgSurface;
-                    e.currentTarget.style.borderColor = colors.border;
-                  }}
+                  style={{ ...localStyles.resultCard, animationDelay: `${idx * 50}ms` }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = colors.bgElevated; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = colors.bgSurface; e.currentTarget.style.borderColor = colors.border; }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
                     <div>
-                      <div style={{ fontWeight: 600, color: colors.textPrimary, fontSize: 13 }}>
-                        {r.patologia}
-                      </div>
+                      <div style={{ fontWeight: 600, color: colors.textPrimary, fontSize: 13 }}>{r.patologia}</div>
                       <div style={{ fontSize: 11, color: colors.textMuted, marginTop: 2 }}>
                         {r.score} corrispondenz{r.score === 1 ? 'a' : 'e'}
                       </div>
@@ -465,29 +711,14 @@ export default function DiagnosisScreen({
                     <button
                       style={localStyles.detailButton}
                       onClick={() => handleNodeClick({ id: r.patologia, type: "patologia" })}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = colors.accent;
-                        e.currentTarget.style.color = 'white';
-                        e.currentTarget.style.borderColor = colors.accent;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = colors.accent;
-                        e.currentTarget.style.borderColor = colors.borderActive;
-                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = colors.accent; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = colors.accent; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = colors.accent; e.currentTarget.style.borderColor = colors.borderActive; }}
                     >
-                      Dettagli
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="m9 18 6-6-6-6" />
-                      </svg>
+                      Dettagli <ChevronIcon />
                     </button>
                   </div>
-                  {/* Progress bar */}
                   <div style={localStyles.progressTrack}>
-                    <div style={{
-                      ...localStyles.progressFill,
-                      width: `${Math.min((r.score / maxScore) * 100, 100)}%`,
-                    }} />
+                    <div style={{ ...localStyles.progressFill, width: `${Math.min((r.score / maxScore) * 100, 100)}%` }} />
                   </div>
                 </div>
               ))}
@@ -498,7 +729,6 @@ export default function DiagnosisScreen({
 
       {/* RIGHT PANEL - Graph */}
       <div style={styles.right}>
-        {/* Stats bar */}
         <div style={localStyles.statsBar}>
           <span>Nodi: <strong style={{ color: colors.textPrimary }}>{graph.nodes.length}</strong></span>
           <span style={{ color: colors.border }}>|</span>
@@ -506,7 +736,6 @@ export default function DiagnosisScreen({
           <span style={{ color: colors.border }}>|</span>
           <span>Patologie: <strong style={{ color: colors.nodePatologia }}>{graph.nodes.filter(n => n.type === 'patologia').length}</strong></span>
         </div>
-
         <ForceGraph2D
           graphData={graph}
           nodeColor={(node) => node.color}
@@ -517,21 +746,140 @@ export default function DiagnosisScreen({
           linkLabel={(link) => `<span style="color:#fff; background:${colors.bgSurface}; padding:6px 10px; border-radius:6px; font-size:11px; border:1px solid ${colors.border}; box-shadow: 0 4px 12px rgba(0,0,0,0.3)">${link.relazione || "COLLEGAMENTO"}</span>`}
           nodeLabel={(node) => `<span style="color:${colors.textPrimary}; background:${colors.bgSurface}; padding:6px 10px; border-radius:6px; font-size:12px; font-weight:600; border:1px solid ${colors.border}; box-shadow: 0 4px 12px rgba(0,0,0,0.3)">${node.id} <span style="color:${colors.textMuted}; font-weight:400; font-size:10px">${node.type.toUpperCase()}</span></span>`}
           onNodeClick={(node) => handleNodeClick(node)}
-          onNodeHover={(node) => {
-            document.body.style.cursor = node ? 'pointer' : 'default';
-          }}
+          onNodeHover={(node) => { document.body.style.cursor = node ? 'pointer' : 'default'; }}
         />
       </div>
 
-      <style>{`
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      `}</style>
-
+      <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
       <Footer />
     </div>
   );
 }
 
+// ─── MOBILE STYLES ────────────────────────────────────────────
+const mob = {
+  page: {
+    minHeight: '100vh', minHeight: '100dvh',
+    background: colors.bgDeep, color: colors.textPrimary,
+    fontFamily: "var(--font-sans, 'Inter', sans-serif)",
+    display: 'flex', flexDirection: 'column',
+  },
+  header: {
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+    padding: '12px 16px', borderBottom: `1px solid ${colors.border}`,
+    background: colors.bgSurface, position: 'sticky', top: 0, zIndex: 20,
+  },
+  backBtn: {
+    background: 'none', border: 'none', color: colors.textMuted,
+    cursor: 'pointer', padding: 4, display: 'flex',
+  },
+  title: { fontSize: 16, fontWeight: 700, margin: 0 },
+  scrollArea: {
+    flex: 1, overflow: 'auto', padding: '12px 16px 24px',
+    WebkitOverflowScrolling: 'touch',
+  },
+  box: {
+    background: colors.bgSurface, border: `1px solid ${colors.border}`,
+    borderRadius: 12, padding: 14, marginBottom: 10,
+  },
+  boxTitle: {
+    fontSize: 11, fontWeight: 600, color: colors.textMuted,
+    textTransform: 'uppercase', letterSpacing: '0.08em',
+    marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6,
+  },
+  select: {
+    padding: '10px 12px', borderRadius: 8,
+    border: `1px solid ${colors.border}`, background: colors.bgDeep,
+    color: colors.textPrimary, fontSize: 13, outline: 'none',
+    cursor: 'pointer', appearance: 'none',
+    backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234b5e74' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+    backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', paddingRight: 28,
+  },
+  chipGrid: {
+    display: 'flex', flexWrap: 'wrap', gap: 6,
+  },
+  chip: {
+    padding: '6px 10px', borderRadius: 16,
+    border: `1px solid ${colors.border}`, fontSize: 12,
+    fontWeight: 500, cursor: 'pointer', transition: 'all 150ms ease',
+    userSelect: 'none', lineHeight: 1.3,
+  },
+  input: {
+    width: '100%', padding: '10px 12px', borderRadius: 8,
+    border: `1px solid ${colors.border}`, background: colors.bgDeep,
+    color: colors.textPrimary, fontSize: 13, outline: 'none',
+    transition: 'border-color 200ms ease, box-shadow 200ms ease',
+  },
+  addBtn: {
+    width: 40, height: 40, borderRadius: 8,
+    border: `1px solid ${colors.border}`, background: 'transparent',
+    color: colors.accent, cursor: 'pointer',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    flexShrink: 0,
+  },
+  dropdown: {
+    position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 4,
+    background: colors.bgSurface, border: `1px solid ${colors.border}`,
+    borderRadius: 8, boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+    zIndex: 100, maxHeight: 200, overflow: 'auto',
+  },
+  dropdownItem: {
+    display: 'flex', alignItems: 'center', padding: '10px 12px',
+    cursor: 'pointer', transition: 'all 100ms ease', gap: 10,
+    borderBottom: `1px solid ${colors.border}`,
+  },
+  tagContainer: {
+    display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10,
+    padding: 10, background: colors.bgDeep,
+    border: `1px solid ${colors.border}`, borderRadius: 8, minHeight: 40,
+  },
+  tag: {
+    display: 'inline-flex', alignItems: 'center', gap: 6,
+    background: colors.accentLight, border: `1px solid ${colors.borderActive}`,
+    color: '#2dd4bf', padding: '5px 10px', borderRadius: 16,
+    fontSize: 12, fontWeight: 500,
+  },
+  tagRemove: {
+    background: 'none', border: 'none', color: colors.accent,
+    cursor: 'pointer', fontSize: 14, padding: 0, lineHeight: 1, fontWeight: 'bold',
+  },
+  elaboraBtn: {
+    ...styles.buttonPrimary, width: '100%', marginTop: 4, marginBottom: 16,
+    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+    padding: '14px 24px', fontSize: 14,
+  },
+  resultCard: {
+    background: colors.bgSurface, border: `1px solid ${colors.border}`,
+    borderRadius: 10, padding: 14,
+  },
+  detailBtn: {
+    background: 'transparent', border: `1px solid ${colors.borderActive}`,
+    color: colors.accent, padding: '6px 12px', borderRadius: 6,
+    fontSize: 12, cursor: 'pointer', fontWeight: 600,
+    display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0,
+  },
+  progressTrack: {
+    height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.05)',
+    overflow: 'hidden', marginTop: 8,
+  },
+  progressFill: {
+    height: '100%', borderRadius: 2,
+    background: `linear-gradient(90deg, ${colors.accent}, #2dd4bf)`,
+    transition: 'width 600ms ease',
+  },
+  toggleGraphBtn: {
+    width: '100%', padding: '10px 16px', borderRadius: 8,
+    border: `1px solid ${colors.border}`, background: 'transparent',
+    color: colors.textSecondary, fontSize: 12, fontWeight: 600,
+    cursor: 'pointer', marginBottom: 12, transition: 'all 150ms ease',
+  },
+  graphContainer: {
+    height: 300, borderRadius: 12, overflow: 'hidden',
+    border: `1px solid ${colors.border}`, marginBottom: 16,
+  },
+};
+
+// ─── DESKTOP STYLES ───────────────────────────────────────────
 const localStyles = {
   boxForm: {
     background: colors.bgSurface,

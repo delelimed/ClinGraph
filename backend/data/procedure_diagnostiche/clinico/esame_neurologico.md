@@ -1,8 +1,8 @@
 ---
-nome: "Esame neurologico"
+nome: "Esame Neurologico Completo"
 tipo: "clinico"
-descrizione: "Valutazione dei nervi cranici, forza muscolare, sensibilità, riflessi, coordinazione, andatura."
-patologie: ["Ictus", "Neuropatie", "Sclerosi multipla"]
+descrizione: "Valutazione dello stato di coscienza, cranici, motorio, sensitivo, riflessi."
+patologie: ["Ictus", "Epilessia", "Neuropatie", "Sclerosi multipla", "Parkinson"]
 ---
 
-Valutazione dei nervi cranici, forza muscolare, sensibilità, riflessi, coordinazione, andatura.
+L'esame neurologico completo comprende la valutazione dello stato di coscienza, dei nervi cranici, della forza e del tono muscolare, della sensibilità e dei riflessi osteotendinei. È fondamentale per la diagnosi di patologie del sistema nervoso centrale e periferico.

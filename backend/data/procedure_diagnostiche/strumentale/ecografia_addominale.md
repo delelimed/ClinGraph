@@ -1,8 +1,8 @@
 ---
-nome: "Ecografia addominale"
+nome: "Ecografia Addominale"
 tipo: "strumentale"
-descrizione: "Visualizzazione ecografica degli organi addominali. Fegato, colecisti, reni, pancreas, milza."
-patologie: ["Gastrite", "Calcolosi biliare", "Steatosi epatica"]
+descrizione: "Ecografia degli organi addominali."
+patologie: ["Calcoli biliari", "Steatosi epatica", "Cisti renali", "Neoplasie epatiche"]
 ---
 
-Visualizzazione ecografica degli organi addominali. Fegato, colecisti, reni, pancreas, milza.
+L'ecografia addominale è un esame non invasivo che utilizza ultrasuoni per visualizzare gli organi dell'addome, come fegato, colecisti, pancreas, reni e milza. È ampiamente utilizzata per la diagnosi di calcoli biliari, lesioni epatiche e patologie renali.

@@ -1,8 +1,8 @@
 ---
-nome: "Profilo lipidico"
+nome: "Profilo Lipidico"
 tipo: "laboratorio"
-descrizione: "Colesterolo totale, HDL, LDL, trigliceridi. Valutazione del rischio cardiovascolare e dislipidemie."
-patologie: ["Infarto miocardico", "Angina pectoris", "Ipertensione", "Diabete mellito"]
+descrizione: "Colesterolo totale, HDL, LDL e trigliceridi. Valutazione del rischio cardiovascolare."
+patologie: ["Dislipidemia", "Aterosclerosi", "Rischio cardiovascolare", "Pancreatite"]
 ---
 
-Colesterolo totale, HDL, LDL, trigliceridi. Valutazione del rischio cardiovascolare e dislipidemie.
+Pannello di esami che include colesterolo totale, colesterolo HDL, colesterolo LDL e trigliceridi. È utilizzato per la valutazione del rischio cardiovascolare e la diagnosi di dislipidemie.

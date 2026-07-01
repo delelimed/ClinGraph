@@ -11,6 +11,8 @@
     "start": "vite preview --port $PORT --host 0.0.0.0"
   },
   "dependencies": {
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-force-graph-2d": "^1.29.1",
@@ -18,8 +20,8 @@
     "reactflow": "^11.11.4"
   },
   "engines": {
-  "node": ">=22.0.0"
-},
+    "node": ">=22.0.0"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.17",

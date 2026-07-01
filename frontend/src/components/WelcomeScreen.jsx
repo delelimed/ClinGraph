@@ -3,6 +3,18 @@ import { useState, useEffect } from "react";
 import { styles, colors } from "../styles";
 import Footer from "./Footer";
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
+  );
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 const API_BASE_URL = import.meta.env.VITE_API_URL
   || (import.meta.env.PROD ? "" : "http://127.0.0.1:8000");
 
@@ -41,6 +53,7 @@ const ArrowLeftIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill
 const CloseIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>;
 
 export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
+  const isMobile = useIsMobile();
   const [hasAcceptedDisclaimer, setHasAcceptedDisclaimer] = useState(false);
   const [showWarningEffect, setShowWarningEffect] = useState(false);
   const [showRequestTypeModal, setShowRequestTypeModal] = useState(false);
@@ -142,26 +155,26 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
 
   return (
     <div style={{ minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column', background: colors.bgDeep, overflow: 'auto' }}>
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 20px' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '24px 16px' : '40px 20px' }}>
 
         {/* Header */}
-        <div style={{ marginBottom: 32, textAlign: 'center', animation: 'slideUp 0.5s ease both' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+        <div style={{ marginBottom: isMobile ? 20 : 32, textAlign: 'center', animation: 'slideUp 0.5s ease both' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: isMobile ? 8 : 10, marginBottom: isMobile ? 12 : 16 }}>
             <div style={{
-              width: 44, height: 44, borderRadius: 12,
+              width: isMobile ? 38 : 44, height: isMobile ? 38 : 44, borderRadius: isMobile ? 10 : 12,
               background: colors.accentLight, border: `1px solid ${colors.borderActive}`,
               display: 'flex', alignItems: 'center', justifyContent: 'center', color: colors.accent,
             }}>
               <HeartPulseIcon />
             </div>
             <div>
-              <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.03em', margin: 0, lineHeight: 1.2 }}>ClinGraph</h1>
-              <span style={{ fontSize: 10, color: colors.textMuted, fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+              <h1 style={{ fontSize: isMobile ? 24 : 28, fontWeight: 700, letterSpacing: '-0.03em', margin: 0, lineHeight: 1.2 }}>ClinGraph</h1>
+              <span style={{ fontSize: isMobile ? 9 : 10, color: colors.textMuted, fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                 Clinical Decision Support System
               </span>
             </div>
           </div>
-          <p style={{ color: colors.textSecondary, fontSize: 14, lineHeight: 1.6, maxWidth: 480, margin: '0 auto' }}>
+          <p style={{ color: colors.textSecondary, fontSize: isMobile ? 13 : 14, lineHeight: 1.6, maxWidth: 480, margin: '0 auto' }}>
             Piattaforma sperimentale di supporto decisionale clinico basata sulla teoria dei grafi per la correlazione sintomatologica.
           </p>
         </div>
@@ -171,23 +184,23 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
           background: showWarningEffect ? colors.dangerLight : 'rgba(245, 158, 11, 0.04)',
           border: `1px solid ${showWarningEffect ? colors.danger : 'rgba(245, 158, 11, 0.15)'}`,
           borderLeft: `3px solid ${colors.warning}`,
-          borderRadius: 10, padding: '16px 20px', textAlign: 'left',
-          maxWidth: 600, width: '100%', marginBottom: 32,
+          borderRadius: 10, padding: isMobile ? '12px 14px' : '16px 20px', textAlign: 'left',
+          maxWidth: 600, width: '100%', marginBottom: isMobile ? 20 : 32,
           transition: 'all 300ms ease', animation: 'slideUp 0.5s ease 0.1s both',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: isMobile ? 8 : 12 }}>
             <WarningIcon />
-            <span style={{ color: colors.warning, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            <span style={{ color: colors.warning, fontSize: isMobile ? 10 : 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
               Avviso Importante e Note Legali
             </span>
           </div>
-          <p style={{ color: colors.textSecondary, fontSize: 12.5, lineHeight: 1.65, marginBottom: 8 }}>
+          <p style={{ color: colors.textSecondary, fontSize: isMobile ? 11.5 : 12.5, lineHeight: 1.65, marginBottom: 8 }}>
             L'attivita' diagnostica e la valutazione dei quadri clinici sono processi complessi che richiedono competenze professionali e anni di formazione accademica specialistica. Questo software e' una <strong style={{ color: colors.textPrimary }}>risorsa puramente sperimentale, didattica ed accademica</strong>.
           </p>
-          <p style={{ color: colors.textSecondary, fontSize: 12.5, lineHeight: 1.65, marginBottom: 0 }}>
+          <p style={{ color: colors.textSecondary, fontSize: isMobile ? 11.5 : 12.5, lineHeight: 1.65, marginBottom: 0 }}>
             Le informazioni, le correlazioni strutturali e i grafi generati dal sistema <strong style={{ color: colors.textPrimary }}>non costituiscono un parere medico, una diagnosi formale, ne' una prescrizione terapeutica</strong>. In presenza di sintomi o quesiti clinici, e' tassativo rivolgersi tempestivamente al proprio medico curante o alle strutture sanitarie competenti.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 16, paddingTop: 16, borderTop: '1px solid rgba(255, 255, 255, 0.05)', cursor: 'pointer', userSelect: 'none' }}
+          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12, marginTop: isMobile ? 12 : 16, paddingTop: isMobile ? 12 : 16, borderTop: '1px solid rgba(255, 255, 255, 0.05)', cursor: 'pointer', userSelect: 'none' }}
             onClick={() => setHasAcceptedDisclaimer(!hasAcceptedDisclaimer)}>
             <div style={{
               width: 38, height: 20, borderRadius: 10,
@@ -202,31 +215,32 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
                 transition: 'left 200ms ease', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)',
               }} />
             </div>
-            <span style={{ color: hasAcceptedDisclaimer ? colors.textPrimary : colors.textMuted, fontSize: 12.5, fontWeight: 500, transition: 'color 200ms ease' }}>
+            <span style={{ color: hasAcceptedDisclaimer ? colors.textPrimary : colors.textMuted, fontSize: isMobile ? 11.5 : 12.5, fontWeight: 500, transition: 'color 200ms ease' }}>
               Dichiaro di aver compreso la natura sperimentale del software e i limiti clinici sopra descritti.
             </span>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', animation: 'slideUp 0.5s ease 0.2s both' }}>
+        <div style={{ display: 'flex', gap: isMobile ? 10 : 12, justifyContent: 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row', width: isMobile ? '100%' : 'auto', animation: 'slideUp 0.5s ease 0.2s both' }}>
           <button style={{
             ...styles.buttonPrimary,
             opacity: hasAcceptedDisclaimer ? 1 : 0.35, cursor: hasAcceptedDisclaimer ? 'pointer' : 'not-allowed',
             boxShadow: hasAcceptedDisclaimer ? '0 4px 16px rgba(13, 148, 136, 0.3)' : 'none',
             transform: hasAcceptedDisclaimer ? 'scale(1)' : 'scale(0.98)',
-            transition: 'all 250ms ease', padding: '12px 28px',
+            transition: 'all 250ms ease', padding: isMobile ? '14px 24px' : '12px 28px',
+            width: isMobile ? '100%' : 'auto', justifyContent: 'center',
           }} onClick={handleDiagnosisClick}>
             Modulo Diagnostico
           </button>
-          <button style={{ ...styles.buttonSecondary, padding: '12px 28px' }} onClick={onOpenExplorer}>
+          <button style={{ ...styles.buttonSecondary, padding: isMobile ? '14px 24px' : '12px 28px', width: isMobile ? '100%' : 'auto', justifyContent: 'center' }} onClick={onOpenExplorer}>
             Consultazione Libera del Grafo
           </button>
         </div>
 
         {/* Request buttons */}
-        <div style={{ marginTop: 24, animation: 'slideUp 0.5s ease 0.3s both' }}>
-          <button style={{ ...styles.buttonSecondary, padding: '10px 24px', fontSize: 12 }} onClick={() => setShowRequestTypeModal(true)}>
+        <div style={{ marginTop: isMobile ? 16 : 24, width: isMobile ? '100%' : 'auto', animation: 'slideUp 0.5s ease 0.3s both' }}>
+          <button style={{ ...styles.buttonSecondary, padding: isMobile ? '12px 20px' : '10px 24px', fontSize: isMobile ? 12 : 12, width: isMobile ? '100%' : 'auto', justifyContent: 'center' }} onClick={() => setShowRequestTypeModal(true)}>
             Richiedi Modifica / Nuova Patologia
           </button>
         </div>
@@ -254,20 +268,20 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
 
       {/* Public Requests Section */}
       {richieste.length > 0 && (
-        <div style={{ width: '100%', maxWidth: 720, margin: '0 auto', paddingBottom: 40, background: colors.bgSurface, borderTop: `1px solid ${colors.border}`, padding: '24px 24px 40px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, maxWidth: 672, margin: '0 auto 16px' }}>
+        <div style={{ width: '100%', maxWidth: 720, margin: '0 auto', paddingBottom: 40, background: colors.bgSurface, borderTop: `1px solid ${colors.border}`, padding: isMobile ? '16px 16px 32px' : '24px 24px 40px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, maxWidth: 672, margin: isMobile ? '0 auto 12px' : '0 auto 16px' }}>
             <ListIcon />
-            <h2 style={{ fontSize: 16, fontWeight: 700, margin: 0, color: colors.textPrimary }}>Richieste della Comunita'</h2>
+            <h2 style={{ fontSize: isMobile ? 14 : 16, fontWeight: 700, margin: 0, color: colors.textPrimary }}>Richieste della Comunita'</h2>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 672, margin: '0 auto' }}>
             {richieste.slice(0, 10).map((r, i) => {
               const sl = statoLabel(r.stato);
               return (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: colors.bgDeep, border: `1px solid ${colors.border}`, borderRadius: 8 }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, padding: isMobile ? '8px 10px' : '10px 14px', background: colors.bgDeep, border: `1px solid ${colors.border}`, borderRadius: 8, flexWrap: 'wrap' }}>
                   <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700, background: r.tipo === 'nuova' || r.tipo === 'nuova_patologia' ? 'rgba(16,185,129,0.1)' : 'rgba(59,130,246,0.1)', color: r.tipo === 'nuova' || r.tipo === 'nuova_patologia' ? '#10b981' : '#3b82f6' }}>
                     {r.tipo === 'nuova' || r.tipo === 'nuova_patologia' ? 'NUOVA' : 'MODIFICA'}
                   </span>
-                  <span style={{ fontWeight: 600, fontSize: 12, color: colors.textPrimary, flex: 1 }}>{r.target}</span>
+                  <span style={{ fontWeight: 600, fontSize: isMobile ? 11 : 12, color: colors.textPrimary, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.target}</span>
                   <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700, background: sl.bg, color: sl.color }}>{sl.text}</span>
                 </div>
               );
@@ -278,7 +292,7 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
 
       {/* Changelog Panel (right side) */}
       {showChangelogPanel && (
-        <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 480, maxWidth: '90vw', background: colors.bgDeep, borderLeft: `1px solid ${colors.border}`, zIndex: 1000, display: 'flex', flexDirection: 'column', boxShadow: '-8px 0 40px rgba(0, 0, 0, 0.5)', animation: 'slideInRight 0.3s ease both' }}>
+        <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: isMobile ? '100%' : 480, maxWidth: isMobile ? '100%' : '90vw', background: colors.bgDeep, borderLeft: isMobile ? 'none' : `1px solid ${colors.border}`, zIndex: 1000, display: 'flex', flexDirection: 'column', boxShadow: isMobile ? 'none' : '-8px 0 40px rgba(0, 0, 0, 0.5)', animation: 'slideInRight 0.3s ease both' }}>
           <div style={{ padding: '12px 20px', borderBottom: `1px solid ${colors.border}`, display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
             <ClockIcon />
             <span style={{ fontSize: 14, fontWeight: 700, color: colors.textPrimary, flex: 1 }}>Changelog</span>
@@ -315,16 +329,16 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
       {/* Request Type Selection Modal */}
       {showRequestTypeModal && (
         <div style={modalStyles.backdrop} onClick={() => setShowRequestTypeModal(false)}>
-          <div style={modalStyles.container} onClick={(e) => e.stopPropagation()}>
+          <div style={{ ...modalStyles.container, padding: isMobile ? 20 : 28 }} onClick={(e) => e.stopPropagation()}>
             <div style={modalStyles.header}>
-              <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: colors.textPrimary }}>Che tipo di richiesta vuoi fare?</h2>
+              <h2 style={{ margin: 0, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: colors.textPrimary }}>Che tipo di richiesta vuoi fare?</h2>
               <button style={modalStyles.closeBtn} onClick={() => setShowRequestTypeModal(false)}>&times;</button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '16px 0' }}>
-              <button style={{ ...styles.buttonPrimary, width: '100%', padding: '16px 24px', justifyContent: 'center' }} onClick={() => openProposalModal("nuova_patologia")}>
+              <button style={{ ...styles.buttonPrimary, width: '100%', padding: isMobile ? '14px 20px' : '16px 24px', justifyContent: 'center' }} onClick={() => openProposalModal("nuova_patologia")}>
                 Proponi Nuova Patologia
               </button>
-              <button style={{ ...styles.buttonSecondary, width: '100%', padding: '16px 24px', justifyContent: 'center' }} onClick={() => openProposalModal("modifica")}>
+              <button style={{ ...styles.buttonSecondary, width: '100%', padding: isMobile ? '14px 20px' : '16px 24px', justifyContent: 'center' }} onClick={() => openProposalModal("modifica")}>
                 Richiedi Modifica a Patologia/Procedura
               </button>
             </div>
@@ -335,9 +349,9 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
       {/* Proposal Modal */}
       {showProposalModal && (
         <div style={modalStyles.backdrop} onClick={() => setShowProposalModal(false)}>
-          <div style={modalStyles.container} onClick={(e) => e.stopPropagation()}>
+          <div style={{ ...modalStyles.container, padding: isMobile ? 20 : 28 }} onClick={(e) => e.stopPropagation()}>
             <div style={modalStyles.header}>
-              <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: colors.textPrimary }}>
+              <h2 style={{ margin: 0, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: colors.textPrimary }}>
                 {isModification ? "Richiedi Modifica" : "Nuova Proposta"}
               </h2>
               <button style={modalStyles.closeBtn} onClick={() => setShowProposalModal(false)}>&times;</button>
@@ -403,7 +417,7 @@ export default function WelcomeScreen({ setScreen, onOpenExplorer }) {
                   <>
                     <div style={{ height: 1, background: colors.border }} />
                     <p style={{ margin: 0, color: colors.textMuted, fontSize: 12 }}>Per follow-up della proposta, inserisci i tuoi dati:</p>
-                    <div style={{ display: 'flex', gap: 12 }}>
+                    <div style={{ display: 'flex', gap: isMobile ? 8 : 12, flexDirection: isMobile ? 'column' : 'row' }}>
                       <div style={{ flex: 1 }}>
                         <label style={modalStyles.label}>Nome *</label>
                         <input style={modalStyles.input} value={proposalForm.nome_autore} onChange={e => setProposalForm({ ...proposalForm, nome_autore: e.target.value })} placeholder="Il tuo nome..." />
